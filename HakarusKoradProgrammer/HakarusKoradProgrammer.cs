@@ -19,7 +19,7 @@ using System.Text;
 
 namespace HakarusKoradProgrammer
 {
-    public partial class Form1 : Form
+    public partial class HakarusKoradProgrammer : Form
     {
         List<SerialDevice> _DeviceList = new List<SerialDevice>();    //List to store the Devices
         List<TestSequenceElement> _TestSequenceElements = new List<TestSequenceElement>(); //List to store the test sequences
@@ -48,7 +48,7 @@ namespace HakarusKoradProgrammer
 
 
         #region initialization
-        public Form1()
+        public HakarusKoradProgrammer()
         {
             InitializeComponent();
         }
