@@ -30,6 +30,7 @@ namespace HakarusKoradProgrammer
 
         private string _ConsoleReturn = "";
         private string _returnBuffer = "";
+        private ushort _returnByte;
 
         struct SerialMsg
         {
@@ -302,6 +303,14 @@ namespace HakarusKoradProgrammer
                     break;
 
                 case "*IDN?":
+                    _returnBuffer = "";
+                    //Console.WriteLine("Getting device decription");
+                    DataGetter(msg);
+                    Thread.Sleep(50);
+                    _IDN = _returnBuffer;
+                    //Console.Write("Connected: ", _returnBuffer);
+                    break;
+                case "STATUS?":
                     _returnBuffer = "";
                     //Console.WriteLine("Getting device decription");
                     DataGetter(msg);

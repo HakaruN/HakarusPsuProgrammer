@@ -42,7 +42,7 @@ namespace HakarusKoradProgrammer
         private string FilePath = "D:\\" ;
 
         private string lvlvComponentTesterBox = "{0,0}{1,35}{2,70}";
-        private string LoggingLayout = "{0,0}{1,20}{2,40}{3,60}{4,80}";
+        private string LoggingLayout = "{0,0}{1,15}{2,30}{3,50}{4,70}";
 
         
 
@@ -698,7 +698,9 @@ namespace HakarusKoradProgrammer
                     Thread.Sleep(250);
                     result = device.ReturnConsole();
                     Console.WriteLine(device.ReturnConsole());
-                    lbConsoleOut.Items.Add("Received back: " + result);
+                    lbConsoleOut.Items.Add("Received back: ");
+                    lbConsoleOut.Items.Add(result);
+                    
                     //lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + voltage + "V", "Current: " + current + "A", "Time: " + time + "ms"));
                 }
             }
@@ -708,8 +710,52 @@ namespace HakarusKoradProgrammer
         #region Test sequencer
         private void btnAddList_Click(object sender, EventArgs e)
         {
+            AddTestElement();
+        }
+
+        private void btnAddRamp_Click(object sender, EventArgs e)
+        {
+            AddRamp();
+        }
+
+        private void AddRamp()
+        {
+            if (!string.IsNullOrWhiteSpace(txtRampVoltageFloor.Text) | !string.IsNullOrWhiteSpace(txtRampVoltageLim.Text) | !string.IsNullOrWhiteSpace(txtRampCurrent.Text) | !string.IsNullOrWhiteSpace(txtRampTime.Text))
+            {
+                //lbxTestSequence.Items.Add(string.Format("Voltage: ", "Current: ", "Time: "));
+                string voltageFloor = txtRampVoltageFloor.Text;
+                string voltageLim = txtRampVoltageLim.Text;
+                string current = txtRampCurrent.Text;
+                string time = txtRampTime.Text;
+
+                float currentVoltage;
+
+                float iterations = float.Parse(time) / 80;
+                for (int i = 0; i <= iterations; i++)
+                {
+                    Console.WriteLine("Iterations: {0}", i);
+                    currentVoltage = (float.Parse(voltageFloor) + (float.Parse(voltageLim) - float.Parse(voltageFloor))) / (float.Parse(time) / (i*100));
+                    Console.WriteLine("Current voltage is {0}", currentVoltage);
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + current + "A", "Time: " + float.Parse(time) / i + "ms"));
+                    Console.WriteLine("Added element to list box");
+                    TestSequenceElement TestElement = new TestSequenceElement(currentVoltage.ToString(), current, time);
+                    _TestSequenceElements.Add(TestElement);
+                }
+
+                
+
+                
+                
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid: Voltage, Current and time peramiters", "Error");
+            }
+        }
+        private void AddTestElement()
+        {
             //If the voltage, current and time input boxes are not empty
-            if(!string.IsNullOrWhiteSpace(txtListVoltage.Text)| !string.IsNullOrWhiteSpace(txtListCurrent.Text) | !string.IsNullOrWhiteSpace(txtListTime.Text))
+            if (!string.IsNullOrWhiteSpace(txtListVoltage.Text) | !string.IsNullOrWhiteSpace(txtListCurrent.Text) | !string.IsNullOrWhiteSpace(txtListTime.Text))
             {
                 //lbxTestSequence.Items.Add(string.Format("Voltage: ", "Current: ", "Time: "));
                 string voltage = txtListVoltage.Text;
@@ -722,9 +768,10 @@ namespace HakarusKoradProgrammer
             }
             else
             {
-                MessageBox.Show("Please enter valid: Voltage, Current and time peramiters","Error");
+                MessageBox.Show("Please enter valid: Voltage, Current and time peramiters", "Error");
             }
         }
+
         private void btnRemoveList_Click(object sender, EventArgs e)
         {
             //2 is the number of items in the list box where its considered empty
@@ -983,6 +1030,10 @@ namespace HakarusKoradProgrammer
             TestSequenceElements = (List<TestSequenceElement>)_XmlSerial.Deserialize(XmlStream);
 
             _TestSequenceElements = TestSequenceElements;
+            foreach(TestSequenceElement Element in _TestSequenceElements)
+            {
+                lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Element.GetVoltage() + "V", "Current: " + Element.GetCurrent() + "A", "Time: " + Element.GetCurrent() + "ms"));
+            }
         }
 
 

@@ -93,19 +93,35 @@
             this.txtSaveM2 = new System.Windows.Forms.Button();
             this.txtSaveM1 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.txtListTime = new System.Windows.Forms.TextBox();
+            this.btnRemoveList = new System.Windows.Forms.Button();
+            this.txtVoltageFloor = new System.Windows.Forms.TextBox();
+            this.txtListVoltage = new System.Windows.Forms.TextBox();
+            this.btnAddList = new System.Windows.Forms.Button();
+            this.txtListCurrent = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblListVoltage = new System.Windows.Forms.Label();
+            this.lblListTime = new System.Windows.Forms.Label();
+            this.lblListCurrent = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddRamp = new System.Windows.Forms.Button();
+            this.txtRampTime = new System.Windows.Forms.TextBox();
+            this.txtRampVoltageFloor = new System.Windows.Forms.TextBox();
+            this.txtRampVoltageLim = new System.Windows.Forms.TextBox();
+            this.txtRampCurrent = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnLoadTest = new System.Windows.Forms.Button();
             this.btnSaveTest = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtListTime = new System.Windows.Forms.TextBox();
-            this.txtListCurrent = new System.Windows.Forms.TextBox();
-            this.lblListTime = new System.Windows.Forms.Label();
-            this.txtListVoltage = new System.Windows.Forms.TextBox();
-            this.lblListCurrent = new System.Windows.Forms.Label();
-            this.lblListVoltage = new System.Windows.Forms.Label();
-            this.btnRemoveList = new System.Windows.Forms.Button();
-            this.btnAddList = new System.Windows.Forms.Button();
+            this.btnAddExotic = new System.Windows.Forms.Button();
             this.lbxTestSequence = new System.Windows.Forms.ListBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -160,6 +176,9 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -841,6 +860,7 @@
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabPage6.Controls.Add(this.tabControl2);
             this.tabPage6.Controls.Add(this.groupBox7);
             this.tabPage6.Controls.Add(this.groupBox6);
             this.tabPage6.Controls.Add(this.lbxTestSequence);
@@ -850,20 +870,239 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Component Test";
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage9);
+            this.tabControl2.Controls.Add(this.tabPage10);
+            this.tabControl2.Location = new System.Drawing.Point(513, 22);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(441, 182);
+            this.tabControl2.TabIndex = 7;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.txtListTime);
+            this.tabPage9.Controls.Add(this.btnRemoveList);
+            this.tabPage9.Controls.Add(this.txtVoltageFloor);
+            this.tabPage9.Controls.Add(this.txtListVoltage);
+            this.tabPage9.Controls.Add(this.btnAddList);
+            this.tabPage9.Controls.Add(this.txtListCurrent);
+            this.tabPage9.Controls.Add(this.label13);
+            this.tabPage9.Controls.Add(this.lblListVoltage);
+            this.tabPage9.Controls.Add(this.lblListTime);
+            this.tabPage9.Controls.Add(this.lblListCurrent);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(433, 156);
+            this.tabPage9.TabIndex = 0;
+            this.tabPage9.Text = "Standard Test";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // txtListTime
+            // 
+            this.txtListTime.Location = new System.Drawing.Point(6, 133);
+            this.txtListTime.Name = "txtListTime";
+            this.txtListTime.Size = new System.Drawing.Size(130, 20);
+            this.txtListTime.TabIndex = 3;
+            this.txtListTime.Text = "1000";
+            // 
+            // btnRemoveList
+            // 
+            this.btnRemoveList.Location = new System.Drawing.Point(159, 79);
+            this.btnRemoveList.Name = "btnRemoveList";
+            this.btnRemoveList.Size = new System.Drawing.Size(130, 55);
+            this.btnRemoveList.TabIndex = 1;
+            this.btnRemoveList.Text = "Remove";
+            this.btnRemoveList.UseVisualStyleBackColor = true;
+            this.btnRemoveList.Click += new System.EventHandler(this.btnRemoveList_Click);
+            // 
+            // txtVoltageFloor
+            // 
+            this.txtVoltageFloor.Location = new System.Drawing.Point(6, 18);
+            this.txtVoltageFloor.Name = "txtVoltageFloor";
+            this.txtVoltageFloor.Size = new System.Drawing.Size(130, 20);
+            this.txtVoltageFloor.TabIndex = 3;
+            // 
+            // txtListVoltage
+            // 
+            this.txtListVoltage.Location = new System.Drawing.Point(6, 55);
+            this.txtListVoltage.Name = "txtListVoltage";
+            this.txtListVoltage.Size = new System.Drawing.Size(130, 20);
+            this.txtListVoltage.TabIndex = 3;
+            // 
+            // btnAddList
+            // 
+            this.btnAddList.Location = new System.Drawing.Point(159, 18);
+            this.btnAddList.Name = "btnAddList";
+            this.btnAddList.Size = new System.Drawing.Size(130, 55);
+            this.btnAddList.TabIndex = 1;
+            this.btnAddList.Text = "Add";
+            this.btnAddList.UseVisualStyleBackColor = true;
+            this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
+            // 
+            // txtListCurrent
+            // 
+            this.txtListCurrent.Location = new System.Drawing.Point(6, 94);
+            this.txtListCurrent.Name = "txtListCurrent";
+            this.txtListCurrent.Size = new System.Drawing.Size(130, 20);
+            this.txtListCurrent.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 3);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(101, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Voltage floor (Volts):";
+            // 
+            // lblListVoltage
+            // 
+            this.lblListVoltage.AutoSize = true;
+            this.lblListVoltage.Location = new System.Drawing.Point(6, 39);
+            this.lblListVoltage.Name = "lblListVoltage";
+            this.lblListVoltage.Size = new System.Drawing.Size(78, 13);
+            this.lblListVoltage.TabIndex = 2;
+            this.lblListVoltage.Text = "Voltage (Volts):";
+            // 
+            // lblListTime
+            // 
+            this.lblListTime.AutoSize = true;
+            this.lblListTime.Location = new System.Drawing.Point(6, 117);
+            this.lblListTime.Name = "lblListTime";
+            this.lblListTime.Size = new System.Drawing.Size(55, 13);
+            this.lblListTime.TabIndex = 2;
+            this.lblListTime.Text = "Time (ms):";
+            // 
+            // lblListCurrent
+            // 
+            this.lblListCurrent.AutoSize = true;
+            this.lblListCurrent.Location = new System.Drawing.Point(6, 78);
+            this.lblListCurrent.Name = "lblListCurrent";
+            this.lblListCurrent.Size = new System.Drawing.Size(79, 13);
+            this.lblListCurrent.TabIndex = 2;
+            this.lblListCurrent.Text = "Current (Amps):";
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.button1);
+            this.tabPage10.Controls.Add(this.btnAddRamp);
+            this.tabPage10.Controls.Add(this.txtRampTime);
+            this.tabPage10.Controls.Add(this.txtRampVoltageFloor);
+            this.tabPage10.Controls.Add(this.txtRampVoltageLim);
+            this.tabPage10.Controls.Add(this.txtRampCurrent);
+            this.tabPage10.Controls.Add(this.label12);
+            this.tabPage10.Controls.Add(this.label9);
+            this.tabPage10.Controls.Add(this.label10);
+            this.tabPage10.Controls.Add(this.label11);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(433, 156);
+            this.tabPage10.TabIndex = 1;
+            this.tabPage10.Text = "tabPage10";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(277, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 55);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Remove";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnAddRamp
+            // 
+            this.btnAddRamp.Location = new System.Drawing.Point(277, 20);
+            this.btnAddRamp.Name = "btnAddRamp";
+            this.btnAddRamp.Size = new System.Drawing.Size(130, 55);
+            this.btnAddRamp.TabIndex = 11;
+            this.btnAddRamp.Text = "Add Ramp";
+            this.btnAddRamp.UseVisualStyleBackColor = true;
+            this.btnAddRamp.Click += new System.EventHandler(this.btnAddRamp_Click);
+            // 
+            // txtRampTime
+            // 
+            this.txtRampTime.Location = new System.Drawing.Point(7, 133);
+            this.txtRampTime.Name = "txtRampTime";
+            this.txtRampTime.Size = new System.Drawing.Size(130, 20);
+            this.txtRampTime.TabIndex = 7;
+            this.txtRampTime.Text = "1000";
+            // 
+            // txtRampVoltageFloor
+            // 
+            this.txtRampVoltageFloor.Location = new System.Drawing.Point(8, 19);
+            this.txtRampVoltageFloor.Name = "txtRampVoltageFloor";
+            this.txtRampVoltageFloor.Size = new System.Drawing.Size(130, 20);
+            this.txtRampVoltageFloor.TabIndex = 8;
+            // 
+            // txtRampVoltageLim
+            // 
+            this.txtRampVoltageLim.Location = new System.Drawing.Point(7, 55);
+            this.txtRampVoltageLim.Name = "txtRampVoltageLim";
+            this.txtRampVoltageLim.Size = new System.Drawing.Size(130, 20);
+            this.txtRampVoltageLim.TabIndex = 8;
+            // 
+            // txtRampCurrent
+            // 
+            this.txtRampCurrent.Location = new System.Drawing.Point(7, 94);
+            this.txtRampCurrent.Name = "txtRampCurrent";
+            this.txtRampCurrent.Size = new System.Drawing.Size(130, 20);
+            this.txtRampCurrent.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(8, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(101, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Voltage Floor(Volts):";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Voltage (Volts):";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 117);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Time (ms):";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 78);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(79, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Current (Amps):";
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.btnTest);
             this.groupBox7.Controls.Add(this.btnLoadTest);
             this.groupBox7.Controls.Add(this.btnSaveTest);
-            this.groupBox7.Location = new System.Drawing.Point(680, 75);
+            this.groupBox7.Location = new System.Drawing.Point(676, 213);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(278, 334);
+            this.groupBox7.Size = new System.Drawing.Size(278, 193);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(32, 206);
+            this.btnTest.Location = new System.Drawing.Point(32, 82);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(236, 98);
             this.btnTest.TabIndex = 1;
@@ -873,7 +1112,7 @@
             // 
             // btnLoadTest
             // 
-            this.btnLoadTest.Location = new System.Drawing.Point(79, 106);
+            this.btnLoadTest.Location = new System.Drawing.Point(145, 19);
             this.btnLoadTest.Name = "btnLoadTest";
             this.btnLoadTest.Size = new System.Drawing.Size(127, 57);
             this.btnLoadTest.TabIndex = 1;
@@ -883,7 +1122,7 @@
             // 
             // btnSaveTest
             // 
-            this.btnSaveTest.Location = new System.Drawing.Point(79, 28);
+            this.btnSaveTest.Location = new System.Drawing.Point(6, 19);
             this.btnSaveTest.Name = "btnSaveTest";
             this.btnSaveTest.Size = new System.Drawing.Size(127, 57);
             this.btnSaveTest.TabIndex = 1;
@@ -893,88 +1132,22 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.txtListTime);
-            this.groupBox6.Controls.Add(this.txtListCurrent);
-            this.groupBox6.Controls.Add(this.lblListTime);
-            this.groupBox6.Controls.Add(this.txtListVoltage);
-            this.groupBox6.Controls.Add(this.lblListCurrent);
-            this.groupBox6.Controls.Add(this.lblListVoltage);
-            this.groupBox6.Controls.Add(this.btnRemoveList);
-            this.groupBox6.Controls.Add(this.btnAddList);
-            this.groupBox6.Location = new System.Drawing.Point(505, 75);
+            this.groupBox6.Controls.Add(this.btnAddExotic);
+            this.groupBox6.Location = new System.Drawing.Point(513, 210);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(157, 334);
+            this.groupBox6.Size = new System.Drawing.Size(157, 208);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             // 
-            // txtListTime
+            // btnAddExotic
             // 
-            this.txtListTime.Location = new System.Drawing.Point(11, 112);
-            this.txtListTime.Name = "txtListTime";
-            this.txtListTime.Size = new System.Drawing.Size(130, 20);
-            this.txtListTime.TabIndex = 3;
-            this.txtListTime.Text = "1000";
-            // 
-            // txtListCurrent
-            // 
-            this.txtListCurrent.Location = new System.Drawing.Point(11, 73);
-            this.txtListCurrent.Name = "txtListCurrent";
-            this.txtListCurrent.Size = new System.Drawing.Size(130, 20);
-            this.txtListCurrent.TabIndex = 3;
-            // 
-            // lblListTime
-            // 
-            this.lblListTime.AutoSize = true;
-            this.lblListTime.Location = new System.Drawing.Point(11, 96);
-            this.lblListTime.Name = "lblListTime";
-            this.lblListTime.Size = new System.Drawing.Size(55, 13);
-            this.lblListTime.TabIndex = 2;
-            this.lblListTime.Text = "Time (ms):";
-            // 
-            // txtListVoltage
-            // 
-            this.txtListVoltage.Location = new System.Drawing.Point(11, 34);
-            this.txtListVoltage.Name = "txtListVoltage";
-            this.txtListVoltage.Size = new System.Drawing.Size(130, 20);
-            this.txtListVoltage.TabIndex = 3;
-            // 
-            // lblListCurrent
-            // 
-            this.lblListCurrent.AutoSize = true;
-            this.lblListCurrent.Location = new System.Drawing.Point(11, 57);
-            this.lblListCurrent.Name = "lblListCurrent";
-            this.lblListCurrent.Size = new System.Drawing.Size(79, 13);
-            this.lblListCurrent.TabIndex = 2;
-            this.lblListCurrent.Text = "Current (Amps):";
-            // 
-            // lblListVoltage
-            // 
-            this.lblListVoltage.AutoSize = true;
-            this.lblListVoltage.Location = new System.Drawing.Point(11, 18);
-            this.lblListVoltage.Name = "lblListVoltage";
-            this.lblListVoltage.Size = new System.Drawing.Size(78, 13);
-            this.lblListVoltage.TabIndex = 2;
-            this.lblListVoltage.Text = "Voltage (Volts):";
-            // 
-            // btnRemoveList
-            // 
-            this.btnRemoveList.Location = new System.Drawing.Point(11, 260);
-            this.btnRemoveList.Name = "btnRemoveList";
-            this.btnRemoveList.Size = new System.Drawing.Size(130, 62);
-            this.btnRemoveList.TabIndex = 1;
-            this.btnRemoveList.Text = "Remove";
-            this.btnRemoveList.UseVisualStyleBackColor = true;
-            this.btnRemoveList.Click += new System.EventHandler(this.btnRemoveList_Click);
-            // 
-            // btnAddList
-            // 
-            this.btnAddList.Location = new System.Drawing.Point(11, 180);
-            this.btnAddList.Name = "btnAddList";
-            this.btnAddList.Size = new System.Drawing.Size(130, 62);
-            this.btnAddList.TabIndex = 1;
-            this.btnAddList.Text = "Add";
-            this.btnAddList.UseVisualStyleBackColor = true;
-            this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
+            this.btnAddExotic.Location = new System.Drawing.Point(19, 141);
+            this.btnAddExotic.Name = "btnAddExotic";
+            this.btnAddExotic.Size = new System.Drawing.Size(130, 55);
+            this.btnAddExotic.TabIndex = 1;
+            this.btnAddExotic.Text = "Add Exotic";
+            this.btnAddExotic.UseVisualStyleBackColor = true;
+            this.btnAddExotic.Click += new System.EventHandler(this.btnRemoveList_Click);
             // 
             // lbxTestSequence
             // 
@@ -1409,9 +1582,13 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -1552,6 +1729,22 @@
         private System.Windows.Forms.TextBox txtBeepState;
         private System.Windows.Forms.Button btnBeepState;
         private System.Windows.Forms.TextBox txtBeep;
+        private System.Windows.Forms.Button btnAddExotic;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddRamp;
+        private System.Windows.Forms.TextBox txtRampTime;
+        private System.Windows.Forms.TextBox txtRampVoltageLim;
+        private System.Windows.Forms.TextBox txtRampCurrent;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtVoltageFloor;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtRampVoltageFloor;
+        private System.Windows.Forms.Label label12;
     }
 }
 
