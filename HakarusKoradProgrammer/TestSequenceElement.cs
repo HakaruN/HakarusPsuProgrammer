@@ -8,13 +8,14 @@ namespace HakarusKoradProgrammer
 {
     public class TestSequenceElement
     {
-        float _voltage;
-        float _current;
-        int _time;
-        float _power;
-        float _resistance;
-        long _ElapsedMs;
+        public float _voltage;
+        public float _current;
+        public int _time;
+        public float _power;
+        public float _resistance;
+        public long _ElapsedMs;
 
+        //This empty constructor is here purley for the Xml serializer, it needs a unperamiterised constructor.
         public TestSequenceElement()
         {
 

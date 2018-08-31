@@ -243,7 +243,7 @@
             // lblConnection
             // 
             this.lblConnection.AutoSize = true;
-            this.lblConnection.Location = new System.Drawing.Point(48, 119);
+            this.lblConnection.Location = new System.Drawing.Point(44, 164);
             this.lblConnection.Name = "lblConnection";
             this.lblConnection.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblConnection.Size = new System.Drawing.Size(62, 13);
@@ -252,7 +252,7 @@
             // 
             // txtConnected
             // 
-            this.txtConnected.Location = new System.Drawing.Point(116, 116);
+            this.txtConnected.Location = new System.Drawing.Point(112, 161);
             this.txtConnected.Name = "txtConnected";
             this.txtConnected.ReadOnly = true;
             this.txtConnected.Size = new System.Drawing.Size(75, 20);
@@ -261,7 +261,7 @@
             // 
             // btnDisconnect
             // 
-            this.btnDisconnect.Location = new System.Drawing.Point(27, 158);
+            this.btnDisconnect.Location = new System.Drawing.Point(23, 203);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(180, 59);
             this.btnDisconnect.TabIndex = 23;
@@ -271,7 +271,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(27, 30);
+            this.btnConnect.Location = new System.Drawing.Point(23, 75);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(180, 59);
             this.btnConnect.TabIndex = 22;
@@ -1370,7 +1370,7 @@
             this.gpbDeviceInfo.TabIndex = 24;
             this.gpbDeviceInfo.TabStop = false;
             // 
-            // Form1
+            // HakarusKoradProgrammer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1381,7 +1381,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "Form1";
+            this.Name = "HakarusKoradProgrammer";
             this.Text = "Hakaru\'s Korad Programmer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);

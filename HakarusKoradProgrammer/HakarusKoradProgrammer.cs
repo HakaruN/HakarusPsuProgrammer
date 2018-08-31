@@ -799,13 +799,6 @@ namespace HakarusKoradProgrammer
             _IsTesting = false;
             Console.WriteLine("Test thread ending");
         }
-
-
-
-        private void btnSaveTest_Click(object sender, EventArgs e)
-        {
-            SaveTestSequence();
-        }
         #endregion
 
         private bool IsDeviceSelected()
@@ -944,10 +937,18 @@ namespace HakarusKoradProgrammer
             SaveTestResults();
         }
 
+
+
+        private void btnSaveTest_Click(object sender, EventArgs e)
+        {
+            SaveTestSequence();
+        }
+
         private void btnLoadTest_Click(object sender, EventArgs e)
         {
             LoadTestSequence();
         }
+
 
         private void SaveTestSequence()
         {
