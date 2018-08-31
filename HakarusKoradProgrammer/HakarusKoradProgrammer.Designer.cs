@@ -1078,7 +1078,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::HakarusKoradProgrammer.Properties.Resources.Toaster;
-            this.pictureBox4.Location = new System.Drawing.Point(687, 219);
+            this.pictureBox4.Location = new System.Drawing.Point(687, 256);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(120, 80);
             this.pictureBox4.TabIndex = 6;
@@ -1086,18 +1086,18 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(243, 305);
+            this.richTextBox2.Location = new System.Drawing.Point(217, 342);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(428, 31);
+            this.richTextBox2.Size = new System.Drawing.Size(508, 31);
             this.richTextBox2.TabIndex = 5;
-            this.richTextBox2.Text = "This software will practically run on a toaster, as long as the toaster can run w" +
-    "indows.\n";
+            this.richTextBox2.Text = "System requirements:    This software will practically run on a toaster, as long " +
+    "as the toaster can run windows.\n";
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::HakarusKoradProgrammer.Properties.Resources.CanItRunCrysis;
-            this.pictureBox3.Location = new System.Drawing.Point(189, 219);
+            this.pictureBox3.Location = new System.Drawing.Point(189, 256);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(500, 80);
             this.pictureBox3.TabIndex = 4;
@@ -1117,7 +1117,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(76, 100);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(801, 113);
+            this.richTextBox1.Size = new System.Drawing.Size(801, 138);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -1126,10 +1126,11 @@
             this.textBox1.Location = new System.Drawing.Point(76, 395);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(802, 20);
+            this.textBox1.Size = new System.Drawing.Size(816, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "This software was developed by Josh \"Hakaru\" Cantwell --- Contact at Cantwell.Jos" +
-    "h@Protonmail.com";
+    "h@Protonmail.com       Github: https://github.com/HakaruN/HakarusPsuProgrammer\r\n" +
+    "";
             // 
             // pictureBox1
             // 

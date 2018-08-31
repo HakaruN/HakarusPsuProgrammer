@@ -122,7 +122,8 @@
 Any modified versions of / derivatives of this software that are publicly distributed must provide the developer of the original work (me) with the changes made as in accordance with the GPLv2 licence.
 
 Additional EULA (agreed to by use of original software/source code) includes this software may not be redistributed under a different name unless additional functionality of the software has been that has had the effect of changing he targeted use case or audience of the software.
-Additionally this software or it's derivatives are prohibited from being sold commercially, it may be redistributed free of charge (in accordance to the GPL licence) or may be resold only by non-profit organisations. However it may be operated and modified internally by for-profit organisations.</value>
+Additionally this software or it's derivatives are prohibited from being sold commercially, it may be redistributed free of charge (in accordance to the GPL licence) or may be resold only by non-profit organisations. However it may be operated and modified internally by for-profit organisations.
+Also note that by using this software you accept that any damages caused as a result of this devices operation are your responsibility. This software may cause damage to components if used iresponsibly.</value>
   </data>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
