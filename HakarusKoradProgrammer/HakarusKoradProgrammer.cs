@@ -187,8 +187,18 @@ namespace HakarusKoradProgrammer
                             _ThreadEnd = false;
                             Console.WriteLine("Connecting {0} to port {1}", cbbDevice.Text, cbbComPort.Text);
                             txtConnected.Text = device.Connect().ToString();
-                            GetDeviceId();
-                            PollingThreadGen();
+                            //If statement safeguards the code so if there is a failed connection (even if the device was detected) the program wont 
+                            //go on to do the Initialisation of the device settings which requires port access which would cause a program crash
+                            if (txtConnected.Text == "true")
+                            {
+                                GetDeviceId();
+                                PollingThreadGen();
+                            }
+                            else
+                            {
+                                return;
+                            }
+
 
                             //Initialises the device settings
                             device.SendQueuePush("OUT","0");
