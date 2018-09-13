@@ -96,9 +96,13 @@
             this.txtListTime = new System.Windows.Forms.TextBox();
             this.btnRemoveList = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.txtFilePath = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnLoadTest = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnSaveTest = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtListVoltage = new System.Windows.Forms.TextBox();
             this.btnAddList = new System.Windows.Forms.Button();
             this.lbxTestSequence = new System.Windows.Forms.ListBox();
@@ -875,18 +879,36 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.txtFileName);
+            this.groupBox7.Controls.Add(this.txtFilePath);
             this.groupBox7.Controls.Add(this.btnTest);
             this.groupBox7.Controls.Add(this.btnLoadTest);
+            this.groupBox7.Controls.Add(this.label10);
             this.groupBox7.Controls.Add(this.btnSaveTest);
-            this.groupBox7.Location = new System.Drawing.Point(676, 213);
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Location = new System.Drawing.Point(676, 81);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(278, 193);
+            this.groupBox7.Size = new System.Drawing.Size(278, 325);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(12, 77);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(246, 20);
+            this.txtFileName.TabIndex = 2;
+            // 
+            // txtFilePath
+            // 
+            this.txtFilePath.Location = new System.Drawing.Point(12, 38);
+            this.txtFilePath.Name = "txtFilePath";
+            this.txtFilePath.Size = new System.Drawing.Size(246, 20);
+            this.txtFilePath.TabIndex = 2;
+            // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(32, 82);
+            this.btnTest.Location = new System.Drawing.Point(22, 221);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(236, 98);
             this.btnTest.TabIndex = 1;
@@ -896,7 +918,7 @@
             // 
             // btnLoadTest
             // 
-            this.btnLoadTest.Location = new System.Drawing.Point(145, 19);
+            this.btnLoadTest.Location = new System.Drawing.Point(145, 158);
             this.btnLoadTest.Name = "btnLoadTest";
             this.btnLoadTest.Size = new System.Drawing.Size(127, 57);
             this.btnLoadTest.TabIndex = 1;
@@ -904,15 +926,33 @@
             this.btnLoadTest.UseVisualStyleBackColor = true;
             this.btnLoadTest.Click += new System.EventHandler(this.btnLoadTest_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 61);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(173, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "File Name (Exclude file extensions):";
+            // 
             // btnSaveTest
             // 
-            this.btnSaveTest.Location = new System.Drawing.Point(6, 19);
+            this.btnSaveTest.Location = new System.Drawing.Point(6, 158);
             this.btnSaveTest.Name = "btnSaveTest";
             this.btnSaveTest.Size = new System.Drawing.Size(127, 57);
             this.btnSaveTest.TabIndex = 1;
             this.btnSaveTest.Text = "Save sequence";
             this.btnSaveTest.UseVisualStyleBackColor = true;
             this.btnSaveTest.Click += new System.EventHandler(this.btnSaveTest_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "File path:";
             // 
             // txtListVoltage
             // 
@@ -1400,6 +1440,7 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -1539,6 +1580,10 @@
         private System.Windows.Forms.TextBox txtBeepState;
         private System.Windows.Forms.Button btnBeepState;
         private System.Windows.Forms.TextBox txtBeep;
+        private System.Windows.Forms.TextBox txtFilePath;
+        private System.Windows.Forms.TextBox txtFileName;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }
 

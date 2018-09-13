@@ -39,12 +39,13 @@ namespace HakarusKoradProgrammer
         private bool _Beeper = false;
         private bool _IsTesting = false;
 
-        private string FilePath = "D:\\" ;
+        private string FilePath = "";
+        private string FileName = "";
 
         private string lvlvComponentTesterBox = "{0,0}{1,35}{2,70}";
         private string LoggingLayout = "{0,0}{1,15}{2,30}{3,50}{4,70}";
 
-        
+
 
 
         #region initialization
@@ -54,7 +55,7 @@ namespace HakarusKoradProgrammer
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
             #region Text box initialisation
             //Populates the form text boxes
             cbbParity.Items.Add("None");
@@ -85,7 +86,7 @@ namespace HakarusKoradProgrammer
             txtCurrent.Text = "0";
             #endregion
             lbxTestSequence.MultiColumn = true;
-            lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox,"Voltage", "Current", "Time"));
+            lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage", "Current", "Time"));
             ComPortInit();
         }
         private void PollingThreadGen()
@@ -98,18 +99,22 @@ namespace HakarusKoradProgrammer
 
 
             PowerMeasurement.IsBackground = true;
-            
+
 
             PowerMeasurement.Start();
-            
+
             Console.WriteLine("Threads started");
         }
         #endregion
 
-        
+
 
         #region Connection Settings
         private void btnCreateDevice_Click(object sender, EventArgs e)
+        {
+            CreateDevice();
+        }
+        private void CreateDevice()
         {
             if (string.IsNullOrWhiteSpace(txtDeviceName.Text))
             {
@@ -127,7 +132,12 @@ namespace HakarusKoradProgrammer
                 DeviceListValidation();
             }
         }
+
         private void btnRemoveDevice_Click(object sender, EventArgs e)
+        {
+            RemoveDevice();
+        }
+        private void RemoveDevice()
         {
             int index = 0;
             foreach (SerialDevice device in _DeviceList)
@@ -144,19 +154,20 @@ namespace HakarusKoradProgrammer
                         cbbDevice.Items.Remove(device._deviceName.ToString());
                         _DeviceList.RemoveAt(index);
                         txtDeviceID.Text = "";
+                        txtConnected.Text = "False";
 
 
                         return;
                     }
                     else
-                    { 
+                    {
                         Console.WriteLine("Removing device {0}", device._deviceName);
                         _ThreadEnd = true;
                         cbbDevice.SelectedIndex = -1;
                         cbbDevice.Items.Remove(device._deviceName.ToString());
                         _DeviceList.RemoveAt(index);
                         txtDeviceID.Text = "";
-
+                        txtConnected.Text = "False";
 
                         return;
                     }
@@ -164,10 +175,13 @@ namespace HakarusKoradProgrammer
                 }
                 index += 1;
             }
-
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
+        {
+            Connect();
+        }
+        private void Connect()
         {
             if (IsDeviceSelected())
             {
@@ -189,7 +203,7 @@ namespace HakarusKoradProgrammer
                             txtConnected.Text = device.Connect().ToString();
                             //If statement safeguards the code so if there is a failed connection (even if the device was detected) the program wont 
                             //go on to do the Initialisation of the device settings which requires port access which would cause a program crash
-                            if (txtConnected.Text == "true")
+                            if (txtConnected.Text == "True")
                             {
                                 GetDeviceId();
                                 PollingThreadGen();
@@ -201,7 +215,7 @@ namespace HakarusKoradProgrammer
 
 
                             //Initialises the device settings
-                            device.SendQueuePush("OUT","0");
+                            device.SendQueuePush("OUT", "0");
                             device.SendQueuePush("VSET1:", "0");
                             device.SendQueuePush("ISET1:", "0");
                             device.SendQueuePush("BEEP", "1");
@@ -215,9 +229,14 @@ namespace HakarusKoradProgrammer
                 DeviceNotSelected();
             }
         }
+
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
-            if(IsDeviceSelected())
+            Disconnect();
+        }
+        private void Disconnect()
+        {
+            if (IsDeviceSelected())
             {
                 foreach (SerialDevice device in _DeviceList)
                 {
@@ -229,7 +248,7 @@ namespace HakarusKoradProgrammer
                             Thread.Sleep(100);
                             Console.WriteLine("Closing connection to {0}.", device._comPort);
 
-                            device.Disconnect();                            
+                            device.Disconnect();
                             txtConnected.Text = device.Disconnect().ToString();
                         }
                         else
@@ -243,7 +262,6 @@ namespace HakarusKoradProgrammer
             {
                 DeviceNotSelected();
             }
-
         }
 
         private void DeviceListValidation()
@@ -1010,41 +1028,121 @@ namespace HakarusKoradProgrammer
 
         private void SaveTestSequence()
         {
+            FilePath = "";
+            FileName = "";
+
+            //If File path text box is empty
+            if (string.IsNullOrWhiteSpace(txtFilePath.Text))
+            {
+                MessageBox.Show("File Path is empty", "File Path is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FilePath = txtFilePath.Text;
+
+            }
+            //If File Name text box is empty
+            if (string.IsNullOrWhiteSpace(txtFileName.Text))
+            {
+                MessageBox.Show("File name is empty", "File name is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FileName = txtFileName.Text;
+            }
             List<TestSequenceElement> TestSequenceElements = _TestSequenceElements;
             
 
             _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
 
-            FileStream XmlStream = new FileStream(FilePath + "TestSequence.Xml", FileMode.Create, FileAccess.Write);
+            FileStream XmlStream = new FileStream(FilePath + @"\" +  FileName + ".Xml", FileMode.Create, FileAccess.Write);
 
             _XmlSerial.Serialize(XmlStream, TestSequenceElements);
 
-
+            FilePath = "";
+            FileName = "";
+            XmlStream.Close();
         }
 
         private void SaveTestResults()
         {
+            FilePath = "";
+            FileName = "";
+
+            //If File path text box is empty
+            if (string.IsNullOrWhiteSpace(txtFilePath.Text))
+            {
+                MessageBox.Show("File Path is empty", "File Path is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FilePath = txtFilePath.Text;
+            }
+            //If File Name text box is empty
+            if (string.IsNullOrWhiteSpace(txtFileName.Text))
+            {
+                MessageBox.Show("File name is empty", "File name is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FileName = txtFileName.Text;
+            }
             List<TestSequenceElement> DataLoggingList = _DataLoggingList;
 
             _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
 
-            FileStream XmlStream = new FileStream(FilePath + "Results.Xml", FileMode.Create, FileAccess.Write);
+            FileStream XmlStream = new FileStream(FilePath + @"\" + FileName + ".Xml", FileMode.Create, FileAccess.Write);
 
             _XmlSerial.Serialize(XmlStream, DataLoggingList);
+            FilePath = "";
+            FileName = "";
+            XmlStream.Close();
         }
 
         private void LoadTestSequence()
         {
+            //If File path text box is empty
+            if (string.IsNullOrWhiteSpace(txtFilePath.Text))
+            {
+                MessageBox.Show("File Path is empty", "File Path is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FilePath = txtFilePath.Text;
+            }
+            //If File Name text box is empty
+            if (string.IsNullOrWhiteSpace(txtFileName.Text))
+            {
+                MessageBox.Show("File name is empty", "File name is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                FileName = txtFileName.Text;
+            }
+
             List<TestSequenceElement> TestSequenceElements = new List<TestSequenceElement>();
             _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
-            FileStream XmlStream = new FileStream(FilePath + "TestSequence.Xml", FileMode.Open, FileAccess.Read);
-            TestSequenceElements = (List<TestSequenceElement>)_XmlSerial.Deserialize(XmlStream);
-
-            _TestSequenceElements = TestSequenceElements;
-            foreach(TestSequenceElement Element in _TestSequenceElements)
+            try
             {
-                lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Element.GetVoltage() + "V", "Current: " + Element.GetCurrent() + "A", "Time: " + Element.GetCurrent() + "ms"));
+                FileStream XmlStream = new FileStream(FilePath + @"\" + FileName + ".Xml", FileMode.Open, FileAccess.Read);
+                TestSequenceElements = (List<TestSequenceElement>)_XmlSerial.Deserialize(XmlStream);
+
+                _TestSequenceElements = TestSequenceElements;
+                foreach (TestSequenceElement Element in _TestSequenceElements)
+                {
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Element.GetVoltage() + "V", "Current: " + Element.GetCurrent() + "A", "Time: " + Element.GetCurrent() + "ms"));
+                }
+
+                FilePath = "";
+                XmlStream.Close();
             }
+            catch
+            {
+                MessageBox.Show("Try checking the filepath and file name", "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            
+
+
         }
 
 
@@ -1075,7 +1173,5 @@ namespace HakarusKoradProgrammer
                 }
             }
         }
-
-
     }
 }
