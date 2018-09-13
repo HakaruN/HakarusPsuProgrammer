@@ -715,9 +715,9 @@ namespace HakarusKoradProgrammer
 
         private void btnAddRamp_Click(object sender, EventArgs e)
         {
-            AddRamp();
+            //AddRamp();
         }
-
+        /*
         private void AddRamp()
         {
             if (!string.IsNullOrWhiteSpace(txtRampVoltageFloor.Text) | !string.IsNullOrWhiteSpace(txtRampVoltageLim.Text) | !string.IsNullOrWhiteSpace(txtRampCurrent.Text) | !string.IsNullOrWhiteSpace(txtRampTime.Text))
@@ -730,13 +730,14 @@ namespace HakarusKoradProgrammer
 
                 float currentVoltage;
 
-                float iterations = float.Parse(time) / 80;
+                float iterations = (float.Parse(time)/1000) * 8;//This assures that every second of testing will have 8 samples taken (hopefully)
+
                 for (int i = 0; i <= iterations; i++)
                 {
                     Console.WriteLine("Iterations: {0}", i);
-                    currentVoltage = (float.Parse(voltageFloor) + (float.Parse(voltageLim) - float.Parse(voltageFloor))) / (float.Parse(time) / (i*100));
+                    //currentVoltage = float.Parse(voltageFloor) + ((float.Parse(voltageLim) - float.Parse(voltageFloor)) / float.Parse(time) / i);
                     Console.WriteLine("Current voltage is {0}", currentVoltage);
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + current + "A", "Time: " + float.Parse(time) / i + "ms"));
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + current + "A", "Time: " + float.Parse(time) / i+ "ms"));
                     Console.WriteLine("Added element to list box");
                     TestSequenceElement TestElement = new TestSequenceElement(currentVoltage.ToString(), current, time);
                     _TestSequenceElements.Add(TestElement);
@@ -751,7 +752,7 @@ namespace HakarusKoradProgrammer
             {
                 MessageBox.Show("Please enter valid: Voltage, Current and time peramiters", "Error");
             }
-        }
+        }*/
         private void AddTestElement()
         {
             //If the voltage, current and time input boxes are not empty
@@ -1039,33 +1040,30 @@ namespace HakarusKoradProgrammer
 
         private void ToggleBeeper()
         {
-            if(_Beeper)
+
+            foreach (SerialDevice device in _DeviceList)
             {
-                foreach(SerialDevice device in _DeviceList)
+                if (device._deviceName == txtDeviceName.Text)
                 {
-                    if (device._deviceName == txtDeviceName.Text)
+
+                    if (_Beeper)
                     {
                         Console.WriteLine("Changing beep statis");
                         device.SendQueuePush("BEEP", "0");
                         txtBeep.Text = "Off";
                         txtBeep.Refresh();
+                        _Beeper = false;
                     }
-                }
-            }
-            else
-            {
-                foreach (SerialDevice device in _DeviceList)
-                {
-                    if (device._deviceName == txtDeviceName.Text)
+                    else
                     {
-                        device.SendQueuePush("BEEP", "1");
                         Console.WriteLine("Changing beep statis");
+                        device.SendQueuePush("BEEP", "1");
                         txtBeep.Text = "On";
                         txtBeep.Refresh();
+                        _Beeper = true;
                     }
                 }
             }
-            
         }
 
 

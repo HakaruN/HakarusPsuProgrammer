@@ -30,7 +30,7 @@ namespace HakarusKoradProgrammer
 
         private string _ConsoleReturn = "";
         private string _returnBuffer = "";
-        private ushort _returnByte;
+        //private ushort _returnByte;
 
         struct SerialMsg
         {

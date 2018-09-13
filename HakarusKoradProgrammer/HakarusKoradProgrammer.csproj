@@ -87,16 +87,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="obj\Loicence.png" />
+    <Content Include="Img\CanItRunCrysis.png" />
+    <Content Include="Img\Loicence.png" />
+    <Content Include="Img\Toaster.png" />
+    <Content Include="Img\UnionJack.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="obj\UnionJack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="obj\CanItRunCrysis.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="obj\Toaster.png" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

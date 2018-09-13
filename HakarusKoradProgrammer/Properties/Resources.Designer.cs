@@ -63,9 +63,9 @@ namespace HakarusKoradProgrammer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CanItRunCrysis {
+        internal static System.Drawing.Bitmap CanItRunCrysis1 {
             get {
-                object obj = ResourceManager.GetObject("CanItRunCrysis", resourceCulture);
+                object obj = ResourceManager.GetObject("CanItRunCrysis1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace HakarusKoradProgrammer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Loicence {
+        internal static System.Drawing.Bitmap Loicence1 {
             get {
-                object obj = ResourceManager.GetObject("Loicence", resourceCulture);
+                object obj = ResourceManager.GetObject("Loicence1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace HakarusKoradProgrammer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Toaster {
+        internal static System.Drawing.Bitmap Toaster1 {
             get {
-                object obj = ResourceManager.GetObject("Toaster", resourceCulture);
+                object obj = ResourceManager.GetObject("Toaster1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace HakarusKoradProgrammer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap UnionJack {
+        internal static System.Drawing.Bitmap UnionJack1 {
             get {
-                object obj = ResourceManager.GetObject("UnionJack", resourceCulture);
+                object obj = ResourceManager.GetObject("UnionJack1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
