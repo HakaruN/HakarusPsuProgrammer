@@ -149,6 +149,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gpbDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.txtLogResultsName = new System.Windows.Forms.TextBox();
+            this.txtLogFilePath = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbConnectionButtons.SuspendLayout();
@@ -1026,6 +1030,10 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.txtLogResultsName);
+            this.groupBox9.Controls.Add(this.txtLogFilePath);
+            this.groupBox9.Controls.Add(this.label11);
+            this.groupBox9.Controls.Add(this.label12);
             this.groupBox9.Controls.Add(this.btnSaveLog);
             this.groupBox9.Location = new System.Drawing.Point(670, 30);
             this.groupBox9.Name = "groupBox9";
@@ -1035,7 +1043,7 @@
             // 
             // btnSaveLog
             // 
-            this.btnSaveLog.Location = new System.Drawing.Point(51, 43);
+            this.btnSaveLog.Location = new System.Drawing.Point(8, 103);
             this.btnSaveLog.Name = "btnSaveLog";
             this.btnSaveLog.Size = new System.Drawing.Size(176, 80);
             this.btnSaveLog.TabIndex = 1;
@@ -1400,6 +1408,38 @@
             this.gpbDeviceInfo.TabIndex = 24;
             this.gpbDeviceInfo.TabStop = false;
             // 
+            // txtLogResultsName
+            // 
+            this.txtLogResultsName.Location = new System.Drawing.Point(8, 77);
+            this.txtLogResultsName.Name = "txtLogResultsName";
+            this.txtLogResultsName.Size = new System.Drawing.Size(246, 20);
+            this.txtLogResultsName.TabIndex = 3;
+            // 
+            // txtLogFilePath
+            // 
+            this.txtLogFilePath.Location = new System.Drawing.Point(8, 38);
+            this.txtLogFilePath.Name = "txtLogFilePath";
+            this.txtLogFilePath.Size = new System.Drawing.Size(246, 20);
+            this.txtLogFilePath.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 61);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(173, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "File Name (Exclude file extensions):";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "File path:";
+            // 
             // HakarusKoradProgrammer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1443,6 +1483,7 @@
             this.groupBox7.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage8.ResumeLayout(false);
@@ -1584,6 +1625,10 @@
         private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtLogResultsName;
+        private System.Windows.Forms.TextBox txtLogFilePath;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }
 

@@ -817,7 +817,8 @@ namespace HakarusKoradProgrammer
         }
         private void StartTest()
         {
-            
+            lbLoggedData.Items.Clear();
+
             Thread TestThread = new Thread(TestExec);
             Thread LoggingThread = new Thread(GraphPolling);
             Console.WriteLine("Test thread created");
@@ -1070,22 +1071,22 @@ namespace HakarusKoradProgrammer
             FileName = "";
 
             //If File path text box is empty
-            if (string.IsNullOrWhiteSpace(txtFilePath.Text))
+            if (string.IsNullOrWhiteSpace(txtLogFilePath.Text))
             {
                 MessageBox.Show("File Path is empty", "File Path is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                FilePath = txtFilePath.Text;
+                FilePath = txtLogFilePath.Text;
             }
             //If File Name text box is empty
-            if (string.IsNullOrWhiteSpace(txtFileName.Text))
+            if (string.IsNullOrWhiteSpace(txtLogResultsName.Text))
             {
                 MessageBox.Show("File name is empty", "File name is empty", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                FileName = txtFileName.Text;
+                FileName = txtLogResultsName.Text;
             }
             List<TestSequenceElement> DataLoggingList = _DataLoggingList;
 
