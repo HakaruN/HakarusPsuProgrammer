@@ -765,7 +765,7 @@ namespace HakarusKoradProgrammer
                 stime = ftime.ToString();
 
                 //number of ms between points used for the ramp
-                const int timeInterval = 140;//Runs at 7hz (7 operation over a period of 1 second)
+                const int timeInterval = 200;//Runs at 4hz (4 operation over a period of 1 second)
 
                 
 
@@ -782,9 +782,16 @@ namespace HakarusKoradProgrammer
                 for (int i = 0; i < numberOfIntervals + 1; i++)
                 {
                     Console.WriteLine("calculated voltage is {0}", currentVoltage = fvfloor + (i * intervalDeltaVoltage));//calculates the current voltage 
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + scurrent + "A", "Time: " + (timeInterval * i) + "ms"));
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Math.Round(currentVoltage,2).ToString() + "V", "Current: " + scurrent + "A", "Time: " + (timeInterval * i) + "ms"));
                     Console.WriteLine("Added element to list box");
-                    TestSequenceElement TestElement = new TestSequenceElement(currentVoltage.ToString(), scurrent, (timeInterval).ToString());
+                    TestSequenceElement TestElement = new TestSequenceElement(Math.Round(currentVoltage, 2).ToString(), scurrent, (timeInterval).ToString());
+                    _TestSequenceElements.Add(TestElement);
+                }
+                if(cbDeRamp.Checked)
+                {
+                    Console.WriteLine("Adding a deramp buffer object");
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + fvfloor.ToString() + "V", "Current: " + scurrent + "A", "Time: " + timeInterval * 2 + "ms"));
+                    TestSequenceElement TestElement = new TestSequenceElement(0.ToString(), scurrent, (timeInterval * 2).ToString());
                     _TestSequenceElements.Add(TestElement);
                 }
 
@@ -876,7 +883,7 @@ namespace HakarusKoradProgrammer
                     {
                         device.SendQueuePush("VSET1:", _TestSequenceElements[index].GetVoltage().ToString());
                         device.SendQueuePush("ISET1:", _TestSequenceElements[index].GetCurrent().ToString());
-                        //Thread.Sleep(25);
+                        Thread.Sleep(250);
                         Thread.Sleep(_TestSequenceElements[index].GetTime());
                     }
                 }

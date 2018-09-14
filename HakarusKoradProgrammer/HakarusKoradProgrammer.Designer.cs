@@ -166,6 +166,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gpbDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.cbDeRamp = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbConnectionButtons.SuspendLayout();
@@ -971,6 +972,7 @@
             // 
             // TabRamp
             // 
+            this.TabRamp.Controls.Add(this.cbDeRamp);
             this.TabRamp.Controls.Add(this.btnRampRemove);
             this.TabRamp.Controls.Add(this.btnAddRamp);
             this.TabRamp.Controls.Add(this.txtRampTime);
@@ -991,7 +993,7 @@
             // 
             // btnRampRemove
             // 
-            this.btnRampRemove.Location = new System.Drawing.Point(205, 97);
+            this.btnRampRemove.Location = new System.Drawing.Point(195, 113);
             this.btnRampRemove.Name = "btnRampRemove";
             this.btnRampRemove.Size = new System.Drawing.Size(130, 55);
             this.btnRampRemove.TabIndex = 10;
@@ -1001,7 +1003,7 @@
             // 
             // btnAddRamp
             // 
-            this.btnAddRamp.Location = new System.Drawing.Point(205, 34);
+            this.btnAddRamp.Location = new System.Drawing.Point(195, 50);
             this.btnAddRamp.Name = "btnAddRamp";
             this.btnAddRamp.Size = new System.Drawing.Size(130, 55);
             this.btnAddRamp.TabIndex = 11;
@@ -1011,7 +1013,7 @@
             // 
             // txtRampTime
             // 
-            this.txtRampTime.Location = new System.Drawing.Point(33, 147);
+            this.txtRampTime.Location = new System.Drawing.Point(22, 147);
             this.txtRampTime.Name = "txtRampTime";
             this.txtRampTime.Size = new System.Drawing.Size(130, 20);
             this.txtRampTime.TabIndex = 7;
@@ -1020,7 +1022,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(33, 131);
+            this.label13.Location = new System.Drawing.Point(22, 131);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 4;
@@ -1029,7 +1031,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(33, 92);
+            this.label14.Location = new System.Drawing.Point(22, 92);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(79, 13);
             this.label14.TabIndex = 5;
@@ -1038,7 +1040,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(33, 14);
+            this.label16.Location = new System.Drawing.Point(22, 14);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(101, 13);
             this.label16.TabIndex = 6;
@@ -1047,7 +1049,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(33, 53);
+            this.label15.Location = new System.Drawing.Point(22, 53);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(111, 13);
             this.label15.TabIndex = 6;
@@ -1055,21 +1057,21 @@
             // 
             // txtRampVFloor
             // 
-            this.txtRampVFloor.Location = new System.Drawing.Point(33, 30);
+            this.txtRampVFloor.Location = new System.Drawing.Point(22, 30);
             this.txtRampVFloor.Name = "txtRampVFloor";
             this.txtRampVFloor.Size = new System.Drawing.Size(130, 20);
             this.txtRampVFloor.TabIndex = 8;
             // 
             // txtRampVCeiling
             // 
-            this.txtRampVCeiling.Location = new System.Drawing.Point(33, 69);
+            this.txtRampVCeiling.Location = new System.Drawing.Point(22, 69);
             this.txtRampVCeiling.Name = "txtRampVCeiling";
             this.txtRampVCeiling.Size = new System.Drawing.Size(130, 20);
             this.txtRampVCeiling.TabIndex = 8;
             // 
             // txtRampCurrent
             // 
-            this.txtRampCurrent.Location = new System.Drawing.Point(33, 108);
+            this.txtRampCurrent.Location = new System.Drawing.Point(22, 108);
             this.txtRampCurrent.Name = "txtRampCurrent";
             this.txtRampCurrent.Size = new System.Drawing.Size(130, 20);
             this.txtRampCurrent.TabIndex = 9;
@@ -1586,6 +1588,16 @@
             this.gpbDeviceInfo.TabIndex = 24;
             this.gpbDeviceInfo.TabStop = false;
             // 
+            // cbDeRamp
+            // 
+            this.cbDeRamp.AutoSize = true;
+            this.cbDeRamp.Location = new System.Drawing.Point(195, 27);
+            this.cbDeRamp.Name = "cbDeRamp";
+            this.cbDeRamp.Size = new System.Drawing.Size(71, 17);
+            this.cbDeRamp.TabIndex = 12;
+            this.cbDeRamp.Text = "De-Ramp";
+            this.cbDeRamp.UseVisualStyleBackColor = true;
+            // 
             // HakarusKoradProgrammer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1792,6 +1804,7 @@
         private System.Windows.Forms.Button btnAddList;
         private System.Windows.Forms.Button btnRampRemove;
         private System.Windows.Forms.Button btnAddRamp;
+        private System.Windows.Forms.CheckBox cbDeRamp;
     }
 }
 

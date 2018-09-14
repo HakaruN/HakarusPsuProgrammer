@@ -423,7 +423,7 @@ namespace HakarusKoradProgrammer
                     //Dequeue
                     msg = _dispatchQueue.Dequeue();
                     SendData(msg);
-                    Thread.Sleep(20);
+                    Thread.Sleep(25);
                 }
             }
         }
