@@ -104,6 +104,7 @@
             this.txtListVoltage = new System.Windows.Forms.TextBox();
             this.txtListCurrent = new System.Windows.Forms.TextBox();
             this.TabRamp = new System.Windows.Forms.TabPage();
+            this.cbDeRamp = new System.Windows.Forms.CheckBox();
             this.btnRampRemove = new System.Windows.Forms.Button();
             this.btnAddRamp = new System.Windows.Forms.Button();
             this.txtRampTime = new System.Windows.Forms.TextBox();
@@ -166,7 +167,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gpbDeviceInfo = new System.Windows.Forms.GroupBox();
-            this.cbDeRamp = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbConnectionButtons.SuspendLayout();
@@ -450,7 +450,7 @@
             this.txtBaudRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBaudRate.Size = new System.Drawing.Size(100, 20);
             this.txtBaudRate.TabIndex = 17;
-            this.txtBaudRate.Text = "4800";
+            this.txtBaudRate.Text = "14400";
             // 
             // lblFlowControl
             // 
@@ -990,6 +990,16 @@
             this.TabRamp.TabIndex = 1;
             this.TabRamp.Text = "Ramp";
             this.TabRamp.UseVisualStyleBackColor = true;
+            // 
+            // cbDeRamp
+            // 
+            this.cbDeRamp.AutoSize = true;
+            this.cbDeRamp.Location = new System.Drawing.Point(195, 27);
+            this.cbDeRamp.Name = "cbDeRamp";
+            this.cbDeRamp.Size = new System.Drawing.Size(71, 17);
+            this.cbDeRamp.TabIndex = 12;
+            this.cbDeRamp.Text = "De-Ramp";
+            this.cbDeRamp.UseVisualStyleBackColor = true;
             // 
             // btnRampRemove
             // 
@@ -1587,16 +1597,6 @@
             this.gpbDeviceInfo.Size = new System.Drawing.Size(213, 105);
             this.gpbDeviceInfo.TabIndex = 24;
             this.gpbDeviceInfo.TabStop = false;
-            // 
-            // cbDeRamp
-            // 
-            this.cbDeRamp.AutoSize = true;
-            this.cbDeRamp.Location = new System.Drawing.Point(195, 27);
-            this.cbDeRamp.Name = "cbDeRamp";
-            this.cbDeRamp.Size = new System.Drawing.Size(71, 17);
-            this.cbDeRamp.TabIndex = 12;
-            this.cbDeRamp.Text = "De-Ramp";
-            this.cbDeRamp.UseVisualStyleBackColor = true;
             // 
             // HakarusKoradProgrammer
             // 

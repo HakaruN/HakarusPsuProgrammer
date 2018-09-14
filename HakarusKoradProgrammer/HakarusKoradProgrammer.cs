@@ -767,14 +767,10 @@ namespace HakarusKoradProgrammer
                 //number of ms between points used for the ramp
                 const int timeInterval = 200;//Runs at 4hz (4 operation over a period of 1 second)
 
-                
-
                 int numberOfIntervals = (int)Math.Round((ftime / timeInterval), 0);
                 Console.WriteLine("Number of intervals {0}", numberOfIntervals);
 
                 float intervalDeltaVoltage = (fvlim - fvfloor) / numberOfIntervals;
-
-
 
                 float currentVoltage = 0;
 
@@ -793,12 +789,7 @@ namespace HakarusKoradProgrammer
                     lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + fvfloor.ToString() + "V", "Current: " + scurrent + "A", "Time: " + timeInterval * 2 + "ms"));
                     TestSequenceElement TestElement = new TestSequenceElement(0.ToString(), scurrent, (timeInterval * 2).ToString());
                     _TestSequenceElements.Add(TestElement);
-                }
-
-                
-
-                
-                
+                }                
             }
             else
             {
