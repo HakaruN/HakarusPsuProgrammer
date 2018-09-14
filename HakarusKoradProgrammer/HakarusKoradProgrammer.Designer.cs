@@ -93,8 +93,27 @@
             this.txtSaveM2 = new System.Windows.Forms.Button();
             this.txtSaveM1 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.txtListTime = new System.Windows.Forms.TextBox();
+            this.TestTypeTab = new System.Windows.Forms.TabControl();
+            this.TabStandard = new System.Windows.Forms.TabPage();
             this.btnRemoveList = new System.Windows.Forms.Button();
+            this.btnAddList = new System.Windows.Forms.Button();
+            this.txtListTime = new System.Windows.Forms.TextBox();
+            this.lblListTime = new System.Windows.Forms.Label();
+            this.lblListCurrent = new System.Windows.Forms.Label();
+            this.lblListVoltage = new System.Windows.Forms.Label();
+            this.txtListVoltage = new System.Windows.Forms.TextBox();
+            this.txtListCurrent = new System.Windows.Forms.TextBox();
+            this.TabRamp = new System.Windows.Forms.TabPage();
+            this.btnRampRemove = new System.Windows.Forms.Button();
+            this.btnAddRamp = new System.Windows.Forms.Button();
+            this.txtRampTime = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtRampVFloor = new System.Windows.Forms.TextBox();
+            this.txtRampVCeiling = new System.Windows.Forms.TextBox();
+            this.txtRampCurrent = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.txtFilePath = new System.Windows.Forms.TextBox();
@@ -103,13 +122,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnSaveTest = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtListVoltage = new System.Windows.Forms.TextBox();
-            this.btnAddList = new System.Windows.Forms.Button();
             this.lbxTestSequence = new System.Windows.Forms.ListBox();
-            this.txtListCurrent = new System.Windows.Forms.TextBox();
-            this.lblListVoltage = new System.Windows.Forms.Label();
-            this.lblListCurrent = new System.Windows.Forms.Label();
-            this.lblListTime = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtLogResultsName = new System.Windows.Forms.TextBox();
@@ -167,6 +180,9 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.TestTypeTab.SuspendLayout();
+            this.TabStandard.SuspendLayout();
+            this.TabRamp.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -847,39 +863,216 @@
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.tabPage6.Controls.Add(this.txtListTime);
-            this.tabPage6.Controls.Add(this.btnRemoveList);
+            this.tabPage6.Controls.Add(this.TestTypeTab);
             this.tabPage6.Controls.Add(this.groupBox7);
-            this.tabPage6.Controls.Add(this.txtListVoltage);
-            this.tabPage6.Controls.Add(this.btnAddList);
             this.tabPage6.Controls.Add(this.lbxTestSequence);
-            this.tabPage6.Controls.Add(this.txtListCurrent);
-            this.tabPage6.Controls.Add(this.lblListVoltage);
-            this.tabPage6.Controls.Add(this.lblListCurrent);
-            this.tabPage6.Controls.Add(this.lblListTime);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(970, 421);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Component Test";
             // 
+            // TestTypeTab
+            // 
+            this.TestTypeTab.Controls.Add(this.TabStandard);
+            this.TestTypeTab.Controls.Add(this.TabRamp);
+            this.TestTypeTab.Location = new System.Drawing.Point(513, 28);
+            this.TestTypeTab.Name = "TestTypeTab";
+            this.TestTypeTab.SelectedIndex = 0;
+            this.TestTypeTab.Size = new System.Drawing.Size(371, 214);
+            this.TestTypeTab.TabIndex = 7;
+            // 
+            // TabStandard
+            // 
+            this.TabStandard.Controls.Add(this.btnRemoveList);
+            this.TabStandard.Controls.Add(this.btnAddList);
+            this.TabStandard.Controls.Add(this.txtListTime);
+            this.TabStandard.Controls.Add(this.lblListTime);
+            this.TabStandard.Controls.Add(this.lblListCurrent);
+            this.TabStandard.Controls.Add(this.lblListVoltage);
+            this.TabStandard.Controls.Add(this.txtListVoltage);
+            this.TabStandard.Controls.Add(this.txtListCurrent);
+            this.TabStandard.Location = new System.Drawing.Point(4, 22);
+            this.TabStandard.Name = "TabStandard";
+            this.TabStandard.Padding = new System.Windows.Forms.Padding(3);
+            this.TabStandard.Size = new System.Drawing.Size(363, 188);
+            this.TabStandard.TabIndex = 0;
+            this.TabStandard.Text = "FixedPoint";
+            this.TabStandard.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveList
+            // 
+            this.btnRemoveList.Location = new System.Drawing.Point(206, 101);
+            this.btnRemoveList.Name = "btnRemoveList";
+            this.btnRemoveList.Size = new System.Drawing.Size(130, 55);
+            this.btnRemoveList.TabIndex = 4;
+            this.btnRemoveList.Text = "Remove";
+            this.btnRemoveList.UseVisualStyleBackColor = true;
+            this.btnRemoveList.Click += new System.EventHandler(this.btnRemoveList_Click);
+            // 
+            // btnAddList
+            // 
+            this.btnAddList.Location = new System.Drawing.Point(206, 38);
+            this.btnAddList.Name = "btnAddList";
+            this.btnAddList.Size = new System.Drawing.Size(130, 55);
+            this.btnAddList.TabIndex = 5;
+            this.btnAddList.Text = "Add";
+            this.btnAddList.UseVisualStyleBackColor = true;
+            this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
+            // 
             // txtListTime
             // 
-            this.txtListTime.Location = new System.Drawing.Point(516, 213);
+            this.txtListTime.Location = new System.Drawing.Point(33, 116);
             this.txtListTime.Name = "txtListTime";
             this.txtListTime.Size = new System.Drawing.Size(130, 20);
             this.txtListTime.TabIndex = 3;
             this.txtListTime.Text = "1000";
             // 
-            // btnRemoveList
+            // lblListTime
             // 
-            this.btnRemoveList.Location = new System.Drawing.Point(516, 327);
-            this.btnRemoveList.Name = "btnRemoveList";
-            this.btnRemoveList.Size = new System.Drawing.Size(130, 55);
-            this.btnRemoveList.TabIndex = 1;
-            this.btnRemoveList.Text = "Remove";
-            this.btnRemoveList.UseVisualStyleBackColor = true;
-            this.btnRemoveList.Click += new System.EventHandler(this.btnRemoveList_Click);
+            this.lblListTime.AutoSize = true;
+            this.lblListTime.Location = new System.Drawing.Point(33, 100);
+            this.lblListTime.Name = "lblListTime";
+            this.lblListTime.Size = new System.Drawing.Size(47, 13);
+            this.lblListTime.TabIndex = 2;
+            this.lblListTime.Text = "Time (s):";
+            // 
+            // lblListCurrent
+            // 
+            this.lblListCurrent.AutoSize = true;
+            this.lblListCurrent.Location = new System.Drawing.Point(33, 61);
+            this.lblListCurrent.Name = "lblListCurrent";
+            this.lblListCurrent.Size = new System.Drawing.Size(79, 13);
+            this.lblListCurrent.TabIndex = 2;
+            this.lblListCurrent.Text = "Current (Amps):";
+            // 
+            // lblListVoltage
+            // 
+            this.lblListVoltage.AutoSize = true;
+            this.lblListVoltage.Location = new System.Drawing.Point(33, 22);
+            this.lblListVoltage.Name = "lblListVoltage";
+            this.lblListVoltage.Size = new System.Drawing.Size(78, 13);
+            this.lblListVoltage.TabIndex = 2;
+            this.lblListVoltage.Text = "Voltage (Volts):";
+            // 
+            // txtListVoltage
+            // 
+            this.txtListVoltage.Location = new System.Drawing.Point(33, 38);
+            this.txtListVoltage.Name = "txtListVoltage";
+            this.txtListVoltage.Size = new System.Drawing.Size(130, 20);
+            this.txtListVoltage.TabIndex = 3;
+            // 
+            // txtListCurrent
+            // 
+            this.txtListCurrent.Location = new System.Drawing.Point(33, 77);
+            this.txtListCurrent.Name = "txtListCurrent";
+            this.txtListCurrent.Size = new System.Drawing.Size(130, 20);
+            this.txtListCurrent.TabIndex = 3;
+            // 
+            // TabRamp
+            // 
+            this.TabRamp.Controls.Add(this.btnRampRemove);
+            this.TabRamp.Controls.Add(this.btnAddRamp);
+            this.TabRamp.Controls.Add(this.txtRampTime);
+            this.TabRamp.Controls.Add(this.label13);
+            this.TabRamp.Controls.Add(this.label14);
+            this.TabRamp.Controls.Add(this.label16);
+            this.TabRamp.Controls.Add(this.label15);
+            this.TabRamp.Controls.Add(this.txtRampVFloor);
+            this.TabRamp.Controls.Add(this.txtRampVCeiling);
+            this.TabRamp.Controls.Add(this.txtRampCurrent);
+            this.TabRamp.Location = new System.Drawing.Point(4, 22);
+            this.TabRamp.Name = "TabRamp";
+            this.TabRamp.Padding = new System.Windows.Forms.Padding(3);
+            this.TabRamp.Size = new System.Drawing.Size(363, 188);
+            this.TabRamp.TabIndex = 1;
+            this.TabRamp.Text = "Ramp";
+            this.TabRamp.UseVisualStyleBackColor = true;
+            // 
+            // btnRampRemove
+            // 
+            this.btnRampRemove.Location = new System.Drawing.Point(205, 97);
+            this.btnRampRemove.Name = "btnRampRemove";
+            this.btnRampRemove.Size = new System.Drawing.Size(130, 55);
+            this.btnRampRemove.TabIndex = 10;
+            this.btnRampRemove.Text = "Remove";
+            this.btnRampRemove.UseVisualStyleBackColor = true;
+            this.btnRampRemove.Click += new System.EventHandler(this.btnRemoveList_Click);
+            // 
+            // btnAddRamp
+            // 
+            this.btnAddRamp.Location = new System.Drawing.Point(205, 34);
+            this.btnAddRamp.Name = "btnAddRamp";
+            this.btnAddRamp.Size = new System.Drawing.Size(130, 55);
+            this.btnAddRamp.TabIndex = 11;
+            this.btnAddRamp.Text = "Add";
+            this.btnAddRamp.UseVisualStyleBackColor = true;
+            this.btnAddRamp.Click += new System.EventHandler(this.btnAddRamp_Click);
+            // 
+            // txtRampTime
+            // 
+            this.txtRampTime.Location = new System.Drawing.Point(33, 147);
+            this.txtRampTime.Name = "txtRampTime";
+            this.txtRampTime.Size = new System.Drawing.Size(130, 20);
+            this.txtRampTime.TabIndex = 7;
+            this.txtRampTime.Text = "1";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(33, 131);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Time (s):";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(33, 92);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Current (Amps):";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(33, 14);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(101, 13);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Voltage floor (Volts):";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(33, 53);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(111, 13);
+            this.label15.TabIndex = 6;
+            this.label15.Text = "Voltage ceiling (Volts):";
+            // 
+            // txtRampVFloor
+            // 
+            this.txtRampVFloor.Location = new System.Drawing.Point(33, 30);
+            this.txtRampVFloor.Name = "txtRampVFloor";
+            this.txtRampVFloor.Size = new System.Drawing.Size(130, 20);
+            this.txtRampVFloor.TabIndex = 8;
+            // 
+            // txtRampVCeiling
+            // 
+            this.txtRampVCeiling.Location = new System.Drawing.Point(33, 69);
+            this.txtRampVCeiling.Name = "txtRampVCeiling";
+            this.txtRampVCeiling.Size = new System.Drawing.Size(130, 20);
+            this.txtRampVCeiling.TabIndex = 8;
+            // 
+            // txtRampCurrent
+            // 
+            this.txtRampCurrent.Location = new System.Drawing.Point(33, 108);
+            this.txtRampCurrent.Name = "txtRampCurrent";
+            this.txtRampCurrent.Size = new System.Drawing.Size(130, 20);
+            this.txtRampCurrent.TabIndex = 9;
             // 
             // groupBox7
             // 
@@ -890,31 +1083,31 @@
             this.groupBox7.Controls.Add(this.label10);
             this.groupBox7.Controls.Add(this.btnSaveTest);
             this.groupBox7.Controls.Add(this.label9);
-            this.groupBox7.Location = new System.Drawing.Point(676, 81);
+            this.groupBox7.Location = new System.Drawing.Point(513, 248);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(278, 325);
+            this.groupBox7.Size = new System.Drawing.Size(423, 162);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(12, 77);
+            this.txtFileName.Location = new System.Drawing.Point(76, 73);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
             this.txtFileName.TabIndex = 2;
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(12, 38);
+            this.txtFilePath.Location = new System.Drawing.Point(76, 34);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(246, 20);
             this.txtFilePath.TabIndex = 2;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(22, 221);
+            this.btnTest.Location = new System.Drawing.Point(277, 99);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(236, 98);
+            this.btnTest.Size = new System.Drawing.Size(127, 57);
             this.btnTest.TabIndex = 1;
             this.btnTest.Text = "Run Test";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -922,7 +1115,7 @@
             // 
             // btnLoadTest
             // 
-            this.btnLoadTest.Location = new System.Drawing.Point(145, 158);
+            this.btnLoadTest.Location = new System.Drawing.Point(144, 99);
             this.btnLoadTest.Name = "btnLoadTest";
             this.btnLoadTest.Size = new System.Drawing.Size(127, 57);
             this.btnLoadTest.TabIndex = 1;
@@ -933,7 +1126,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 61);
+            this.label10.Location = new System.Drawing.Point(73, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(173, 13);
             this.label10.TabIndex = 2;
@@ -941,7 +1134,7 @@
             // 
             // btnSaveTest
             // 
-            this.btnSaveTest.Location = new System.Drawing.Point(6, 158);
+            this.btnSaveTest.Location = new System.Drawing.Point(5, 99);
             this.btnSaveTest.Name = "btnSaveTest";
             this.btnSaveTest.Size = new System.Drawing.Size(127, 57);
             this.btnSaveTest.TabIndex = 1;
@@ -952,70 +1145,19 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 22);
+            this.label9.Location = new System.Drawing.Point(73, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 2;
             this.label9.Text = "File path:";
             // 
-            // txtListVoltage
-            // 
-            this.txtListVoltage.Location = new System.Drawing.Point(516, 135);
-            this.txtListVoltage.Name = "txtListVoltage";
-            this.txtListVoltage.Size = new System.Drawing.Size(130, 20);
-            this.txtListVoltage.TabIndex = 3;
-            // 
-            // btnAddList
-            // 
-            this.btnAddList.Location = new System.Drawing.Point(516, 266);
-            this.btnAddList.Name = "btnAddList";
-            this.btnAddList.Size = new System.Drawing.Size(130, 55);
-            this.btnAddList.TabIndex = 1;
-            this.btnAddList.Text = "Add";
-            this.btnAddList.UseVisualStyleBackColor = true;
-            this.btnAddList.Click += new System.EventHandler(this.btnAddList_Click);
-            // 
             // lbxTestSequence
             // 
             this.lbxTestSequence.FormattingEnabled = true;
-            this.lbxTestSequence.Location = new System.Drawing.Point(25, 81);
+            this.lbxTestSequence.Location = new System.Drawing.Point(25, 29);
             this.lbxTestSequence.Name = "lbxTestSequence";
-            this.lbxTestSequence.Size = new System.Drawing.Size(460, 329);
+            this.lbxTestSequence.Size = new System.Drawing.Size(460, 381);
             this.lbxTestSequence.TabIndex = 4;
-            // 
-            // txtListCurrent
-            // 
-            this.txtListCurrent.Location = new System.Drawing.Point(516, 174);
-            this.txtListCurrent.Name = "txtListCurrent";
-            this.txtListCurrent.Size = new System.Drawing.Size(130, 20);
-            this.txtListCurrent.TabIndex = 3;
-            // 
-            // lblListVoltage
-            // 
-            this.lblListVoltage.AutoSize = true;
-            this.lblListVoltage.Location = new System.Drawing.Point(516, 119);
-            this.lblListVoltage.Name = "lblListVoltage";
-            this.lblListVoltage.Size = new System.Drawing.Size(78, 13);
-            this.lblListVoltage.TabIndex = 2;
-            this.lblListVoltage.Text = "Voltage (Volts):";
-            // 
-            // lblListCurrent
-            // 
-            this.lblListCurrent.AutoSize = true;
-            this.lblListCurrent.Location = new System.Drawing.Point(516, 158);
-            this.lblListCurrent.Name = "lblListCurrent";
-            this.lblListCurrent.Size = new System.Drawing.Size(79, 13);
-            this.lblListCurrent.TabIndex = 2;
-            this.lblListCurrent.Text = "Current (Amps):";
-            // 
-            // lblListTime
-            // 
-            this.lblListTime.AutoSize = true;
-            this.lblListTime.Location = new System.Drawing.Point(516, 197);
-            this.lblListTime.Name = "lblListTime";
-            this.lblListTime.Size = new System.Drawing.Size(55, 13);
-            this.lblListTime.TabIndex = 2;
-            this.lblListTime.Text = "Time (ms):";
             // 
             // tabPage7
             // 
@@ -1478,7 +1620,11 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            this.TestTypeTab.ResumeLayout(false);
+            this.TabStandard.ResumeLayout(false);
+            this.TabStandard.PerformLayout();
+            this.TabRamp.ResumeLayout(false);
+            this.TabRamp.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.tabPage7.ResumeLayout(false);
@@ -1581,8 +1727,6 @@
         private System.Windows.Forms.TextBox txtListVoltage;
         private System.Windows.Forms.Label lblListCurrent;
         private System.Windows.Forms.Label lblListVoltage;
-        private System.Windows.Forms.Button btnRemoveList;
-        private System.Windows.Forms.Button btnAddList;
         private System.Windows.Forms.GroupBox gpbTopSec;
         private System.Windows.Forms.GroupBox gpbDeviceInfo;
         private System.Windows.Forms.GroupBox gpbPowerSwitch;
@@ -1629,6 +1773,21 @@
         private System.Windows.Forms.TextBox txtLogFilePath;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabControl TestTypeTab;
+        private System.Windows.Forms.TabPage TabStandard;
+        private System.Windows.Forms.TabPage TabRamp;
+        private System.Windows.Forms.TextBox txtRampTime;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtRampVFloor;
+        private System.Windows.Forms.TextBox txtRampVCeiling;
+        private System.Windows.Forms.TextBox txtRampCurrent;
+        private System.Windows.Forms.Button btnRemoveList;
+        private System.Windows.Forms.Button btnAddList;
+        private System.Windows.Forms.Button btnRampRemove;
+        private System.Windows.Forms.Button btnAddRamp;
     }
 }
 

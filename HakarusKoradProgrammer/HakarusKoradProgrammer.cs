@@ -743,31 +743,48 @@ namespace HakarusKoradProgrammer
 
         private void btnAddRamp_Click(object sender, EventArgs e)
         {
-            //AddRamp();
+            AddRamp();
         }
-        /*
+        
         private void AddRamp()
         {
-            if (!string.IsNullOrWhiteSpace(txtRampVoltageFloor.Text) | !string.IsNullOrWhiteSpace(txtRampVoltageLim.Text) | !string.IsNullOrWhiteSpace(txtRampCurrent.Text) | !string.IsNullOrWhiteSpace(txtRampTime.Text))
+            if (!string.IsNullOrWhiteSpace(txtRampVFloor.Text) | !string.IsNullOrWhiteSpace(txtRampVCeiling.Text) | !string.IsNullOrWhiteSpace(txtRampCurrent.Text) | !string.IsNullOrWhiteSpace(txtRampTime.Text))
             {
                 //lbxTestSequence.Items.Add(string.Format("Voltage: ", "Current: ", "Time: "));
-                string voltageFloor = txtRampVoltageFloor.Text;
-                string voltageLim = txtRampVoltageLim.Text;
-                string current = txtRampCurrent.Text;
-                string time = txtRampTime.Text;
+                string svoltageFloor = txtRampVFloor.Text;
+                string svoltageLim = txtRampVCeiling.Text;
+                string scurrent = txtRampCurrent.Text;
+                string stime = txtRampTime.Text;
 
-                float currentVoltage;
+                float fvfloor = float.Parse(svoltageFloor);
+                float fvlim = float.Parse(svoltageLim);
+                float fcurrent = float.Parse(scurrent);
+                float ftime = float.Parse(stime);
 
-                float iterations = (float.Parse(time)/1000) * 8;//This assures that every second of testing will have 8 samples taken (hopefully)
+                ftime = ftime * 1000;//converts the inputs time to ms
+                stime = ftime.ToString();
 
-                for (int i = 0; i <= iterations; i++)
+                //number of ms between points used for the ramp
+                const int timeInterval = 250;
+
+                
+
+                int numberOfIntervals = (int)Math.Round((ftime / timeInterval), 0);
+                Console.WriteLine("Number of intervals {0}", numberOfIntervals);
+
+                int intervalDeltaVoltage = ((int)Math.Round(fvlim) - (int)Math.Round(fvfloor)) / numberOfIntervals;
+
+
+
+                float currentVoltage = 0;
+
+
+                for (int i = 0; i < numberOfIntervals + 1; i++)
                 {
-                    Console.WriteLine("Iterations: {0}", i);
-                    //currentVoltage = float.Parse(voltageFloor) + ((float.Parse(voltageLim) - float.Parse(voltageFloor)) / float.Parse(time) / i);
-                    Console.WriteLine("Current voltage is {0}", currentVoltage);
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + current + "A", "Time: " + float.Parse(time) / i+ "ms"));
+                    Console.WriteLine("calculated voltage is {0}", currentVoltage = fvfloor + (i * intervalDeltaVoltage));//calculates the current voltage 
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + currentVoltage + "V", "Current: " + scurrent + "A", "Time: " + (timeInterval * i) + "ms"));
                     Console.WriteLine("Added element to list box");
-                    TestSequenceElement TestElement = new TestSequenceElement(currentVoltage.ToString(), current, time);
+                    TestSequenceElement TestElement = new TestSequenceElement(currentVoltage.ToString(), scurrent, (timeInterval).ToString());
                     _TestSequenceElements.Add(TestElement);
                 }
 
@@ -780,16 +797,19 @@ namespace HakarusKoradProgrammer
             {
                 MessageBox.Show("Please enter valid: Voltage, Current and time peramiters", "Error");
             }
-        }*/
+        }
         private void AddTestElement()
         {
             //If the voltage, current and time input boxes are not empty
             if (!string.IsNullOrWhiteSpace(txtListVoltage.Text) | !string.IsNullOrWhiteSpace(txtListCurrent.Text) | !string.IsNullOrWhiteSpace(txtListTime.Text))
             {
-                //lbxTestSequence.Items.Add(string.Format("Voltage: ", "Current: ", "Time: "));
                 string voltage = txtListVoltage.Text;
                 string current = txtListCurrent.Text;
                 string time = txtListTime.Text;
+                float ftime = float.Parse(time);
+                ftime = ftime * 1000;
+                time = ftime.ToString();
+
                 lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + voltage + "V", "Current: " + current + "A", "Time: " + time + "ms"));
 
                 TestSequenceElement TestElement = new TestSequenceElement(voltage, current, time);
@@ -843,7 +863,6 @@ namespace HakarusKoradProgrammer
                     device.SendQueuePush("VSET1:", "0");
                     device.SendQueuePush("ISET1:", "0");
                     device.SendQueuePush("OUT", "1");
-
                 }
             }
 
@@ -857,7 +876,7 @@ namespace HakarusKoradProgrammer
                     {
                         device.SendQueuePush("VSET1:", _TestSequenceElements[index].GetVoltage().ToString());
                         device.SendQueuePush("ISET1:", _TestSequenceElements[index].GetCurrent().ToString());
-                        Thread.Sleep(50);
+                        Thread.Sleep(25);
                         Thread.Sleep(_TestSequenceElements[index].GetTime());
                     }
                 }

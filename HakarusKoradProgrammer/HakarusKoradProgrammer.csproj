@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{499CF094-B92A-4839-A4EB-5BD215B1AB36}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>HakarusKoradProgrammer</RootNamespace>
     <AssemblyName>HakarusKoradProgrammer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
