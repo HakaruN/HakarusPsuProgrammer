@@ -43,7 +43,7 @@ namespace HakarusKoradProgrammer
         private string FileName = "";
 
         private string lvlvComponentTesterBox = "{0,0}{1,35}{2,70}";
-        private string LoggingLayout = "{0,0}{1,15}{2,30}{3,50}{4,70}";
+        private string LoggingLayout = "{0,0}{1,25}{2,25}{3,35}{4,35}";
 
 
 
@@ -843,6 +843,7 @@ namespace HakarusKoradProgrammer
                     device.SendQueuePush("VSET1:", "0");
                     device.SendQueuePush("ISET1:", "0");
                     device.SendQueuePush("OUT", "1");
+
                 }
             }
 
@@ -856,6 +857,7 @@ namespace HakarusKoradProgrammer
                     {
                         device.SendQueuePush("VSET1:", _TestSequenceElements[index].GetVoltage().ToString());
                         device.SendQueuePush("ISET1:", _TestSequenceElements[index].GetCurrent().ToString());
+                        Thread.Sleep(50);
                         Thread.Sleep(_TestSequenceElements[index].GetTime());
                     }
                 }
@@ -895,7 +897,7 @@ namespace HakarusKoradProgrammer
         #region Power monitoring
         private void PowerPoller()
         {
-            Thread.Sleep(250);
+            //Thread.Sleep(250);
             while(!_ThreadEnd)
             {
                 PowerUpdater();
@@ -964,18 +966,19 @@ namespace HakarusKoradProgrammer
                     Thread.Sleep(200);
                 }
             }
-            Console.WriteLine();
+            stopWatch.Stop();
+            //Console.WriteLine();
             _DataLoggingList = DataLoggingList;
 
-            Console.WriteLine("Iterated {0} number of times", index);
+            //Console.WriteLine("Iterated {0} number of times", index);
             TestReadout();
-            Console.WriteLine();
+            //Console.WriteLine();
         }
         private void TestReadout()
         {
-            Console.WriteLine();
+            /*Console.WriteLine();
             Console.WriteLine("Gotten {0} datapoints during the last test", _DataLoggingList.Count());
-            Console.WriteLine();
+            Console.WriteLine();*/
             foreach (TestSequenceElement snippet in _DataLoggingList)
             {
                 Console.WriteLine("Voltage {0}, Current {1}, Power {2}, Resistance {3} was measured at time {4}", snippet.GetVoltage(), snippet.GetCurrent(), snippet.GetPower(), snippet.GetResistance(), snippet.GetElapsedTime());
