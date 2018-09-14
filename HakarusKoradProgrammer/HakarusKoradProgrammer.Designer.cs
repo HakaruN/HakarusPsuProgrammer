@@ -432,7 +432,7 @@
             this.txtDataBits.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtDataBits.Size = new System.Drawing.Size(100, 20);
             this.txtDataBits.TabIndex = 16;
-            this.txtDataBits.Text = "8";
+            this.txtDataBits.Text = "6";
             // 
             // txtDeviceName
             // 
@@ -927,7 +927,7 @@
             this.txtListTime.Name = "txtListTime";
             this.txtListTime.Size = new System.Drawing.Size(130, 20);
             this.txtListTime.TabIndex = 3;
-            this.txtListTime.Text = "1000";
+            this.txtListTime.Text = "1";
             // 
             // lblListTime
             // 

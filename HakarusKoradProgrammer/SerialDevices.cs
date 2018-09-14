@@ -35,6 +35,8 @@ namespace HakarusKoradProgrammer
         private string _returnBuffer = "";
         //private ushort _returnByte;
 
+        public  int _returnDelay = 50;
+
         struct SerialMsg
         {
             string _instruction;
@@ -230,7 +232,7 @@ namespace HakarusKoradProgrammer
             string instruction = Packet.GetInstruction();
             string value = Packet.GetValue();
 
-            const int returnDelay = 50;
+            
 
             msg = instruction + value;
             switch (instruction)
@@ -240,13 +242,13 @@ namespace HakarusKoradProgrammer
                     _returnBuffer = "";
                     //Console.WriteLine("Turning devicice beeper : {0}", value);
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
                 case "OUT":                    
                     _returnBuffer = "";
                     //Console.WriteLine("Turning device power to: {0}", value);
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "VSET1:":                    
@@ -254,7 +256,7 @@ namespace HakarusKoradProgrammer
                     //Console.WriteLine("Sending voltage value: {0}",value);
                     _port.Write(msg);
                     //Console.WriteLine("Data sent: {0}", msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "ISET1:":
@@ -262,56 +264,58 @@ namespace HakarusKoradProgrammer
                     //Console.WriteLine("Sending current value: {0}",value);
                     _port.Write(msg);
                     //Console.WriteLine("Data sent: {0}", msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "OCP":                    
                     _returnBuffer = "";
                     //Console.WriteLine("Setting OCP to: {0}", value);
                     _port.Write(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "OVP":
                     _returnBuffer = "";
                     //Console.WriteLine("Setting OVP to: {0}", value);
                     _port.Write(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "RCL":
                     _returnBuffer = "";
                     //Console.WriteLine("recalling state from Mem loc{0}", value);
                     _port.Write(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "SAV":
                     _returnBuffer = "";
                     //Console.WriteLine("Saving state to Mem loc{0}",value);
                     _port.Write(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     break;
 
                 case "VOUT1?":
                     _returnBuffer = "";
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
-                    _fvoltage = float.Parse(_returnBuffer);
+                    Thread.Sleep(_returnDelay);
+                    try { _fvoltage = float.Parse(_returnBuffer); }
+                    catch { Console.WriteLine("Voltage sense error"); }
                     break;
 
                 case "IOUT1?":
                     _returnBuffer = "";
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
-                    _fcurrent = float.Parse(_returnBuffer);
+                    Thread.Sleep(_returnDelay);
+                    try { _fcurrent = float.Parse(_returnBuffer); }
+                    catch { Console.WriteLine("Current sense error"); }
                     break;
 
                 case "*IDN?":
                     _returnBuffer = "";
                     //Console.WriteLine("Getting device decription");
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     _IDN = _returnBuffer;
                     //Console.Write("Connected: ", _returnBuffer);
                     break;
@@ -319,7 +323,7 @@ namespace HakarusKoradProgrammer
                     _returnBuffer = "";
                     //Console.WriteLine("Getting device decription");
                     DataGetter(msg);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     _IDN = _returnBuffer;
                     //Console.Write("Connected: ", _returnBuffer);
                     break;
@@ -329,7 +333,7 @@ namespace HakarusKoradProgrammer
                     _returnBuffer = "";
                     //Console.WriteLine("Sending console message");
                     DataGetter(value);
-                    Thread.Sleep(returnDelay);
+                    Thread.Sleep(_returnDelay);
                     _ConsoleReturn = _returnBuffer;
                     //Console.Write("Device returned: ", _ConsoleReturn);
                     //Console.WriteLine("(Output in Hex): ", String.Format("{0,10:X}", _ConsoleReturn));
@@ -423,7 +427,6 @@ namespace HakarusKoradProgrammer
                     //Dequeue
                     msg = _dispatchQueue.Dequeue();
                     SendData(msg);
-                    Thread.Sleep(25);
                 }
             }
         }

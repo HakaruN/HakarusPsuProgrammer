@@ -778,7 +778,7 @@ namespace HakarusKoradProgrammer
                 for (int i = 0; i < numberOfIntervals + 1; i++)
                 {
                     Console.WriteLine("calculated voltage is {0}", currentVoltage = fvfloor + (i * intervalDeltaVoltage));//calculates the current voltage 
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Math.Round(currentVoltage,2).ToString() + "V", "Current: " + scurrent + "A", "Time: " + (timeInterval * i) + "ms"));
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, Math.Round(currentVoltage,2).ToString() + "V", scurrent + "A",(timeInterval * i) + "ms"));
                     Console.WriteLine("Added element to list box");
                     TestSequenceElement TestElement = new TestSequenceElement(Math.Round(currentVoltage, 2).ToString(), scurrent, (timeInterval).ToString());
                     _TestSequenceElements.Add(TestElement);
@@ -786,7 +786,7 @@ namespace HakarusKoradProgrammer
                 if(cbDeRamp.Checked)
                 {
                     Console.WriteLine("Adding a deramp buffer object");
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + fvfloor.ToString() + "V", "Current: " + scurrent + "A", "Time: " + timeInterval * 2 + "ms"));
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, 0.ToString() + "V", scurrent + "A", timeInterval * 2 + "ms"));
                     TestSequenceElement TestElement = new TestSequenceElement(0.ToString(), scurrent, (timeInterval * 2).ToString());
                     _TestSequenceElements.Add(TestElement);
                 }                
@@ -838,15 +838,14 @@ namespace HakarusKoradProgrammer
             lbLoggedData.Items.Clear();
 
             Thread TestThread = new Thread(TestExec);
-            Thread LoggingThread = new Thread(GraphPolling);
+            
             Console.WriteLine("Test thread created");
 
             TestThread.IsBackground = true;
-            LoggingThread.IsBackground = true;
 
             _IsTesting = true;
 
-            LoggingThread.Start();
+            
             TestThread.Start();
             Console.WriteLine("Test thread started");
         }
@@ -863,23 +862,23 @@ namespace HakarusKoradProgrammer
                     device.SendQueuePush("OUT", "1");
                 }
             }
-
+            Thread.Sleep(750);//This allows the device to activate and zero out before the test begins
+            Thread LoggingThread = new Thread(GraphPolling);
+            LoggingThread.IsBackground = true;
+            LoggingThread.Start();
             //Runs the tests
             for (int index = 0; index < _TestSequenceElements.Count; index++)
             {
-                //Console.WriteLine("Item {0} has a voltage of {1}V, current of {2}A sustained for {3}ms", index, _TestSequenceElements[index].GetVoltage(), _TestSequenceElements[index].GetCurrent(), _TestSequenceElements[index].GetTime());
                 foreach (SerialDevice device in _DeviceList)
                 {
                     if (device._deviceName == txtDeviceName.Text)
                     {
                         device.SendQueuePush("VSET1:", _TestSequenceElements[index].GetVoltage().ToString());
                         device.SendQueuePush("ISET1:", _TestSequenceElements[index].GetCurrent().ToString());
-                        Thread.Sleep(250);
-                        Thread.Sleep(_TestSequenceElements[index].GetTime());
+                        Thread.Sleep(  _TestSequenceElements[index].GetTime());
                     }
                 }
             }
-
             //Deinitialises the device for testing, resetting back to stable values
             foreach (SerialDevice device in _DeviceList)
             {
@@ -890,9 +889,10 @@ namespace HakarusKoradProgrammer
                     device.SendQueuePush("OUT", "0");
                 }
             }
+            Thread.Sleep(100);
             //Ends the test thread
-            Thread.Sleep(600);
             _IsTesting = false;
+
             Console.WriteLine("Test thread ending");
         }
         #endregion
@@ -918,7 +918,7 @@ namespace HakarusKoradProgrammer
             while(!_ThreadEnd)
             {
                 PowerUpdater();
-                Thread.Sleep(50);
+                Thread.Sleep(25);
             }
         }
         private void PowerUpdater()
@@ -1151,7 +1151,7 @@ namespace HakarusKoradProgrammer
                 _TestSequenceElements = TestSequenceElements;
                 foreach (TestSequenceElement Element in _TestSequenceElements)
                 {
-                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage: " + Element.GetVoltage() + "V", "Current: " + Element.GetCurrent() + "A", "Time: " + Element.GetCurrent() + "ms"));
+                    lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox,Element.GetVoltage() + "V", Element.GetCurrent() + "A", Element.GetTime() + "ms"));
                 }
 
                 FilePath = "";
