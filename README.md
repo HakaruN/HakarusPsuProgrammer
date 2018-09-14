@@ -13,3 +13,6 @@ A Serial interface to communucate with the PSU.
 
 Disclaimer of responsibility:
 Any damage caused via the use of this software is of the responsibility of the End-user. The software is capable of damaging electronics components if used inappropriately.
+
+
+Also note that the Exe supplied may be a few updates out of date. so rebulilding with vis studio (Or any .Net compiler) may solve problems found with the supplied exe.
