@@ -765,14 +765,14 @@ namespace HakarusKoradProgrammer
                 stime = ftime.ToString();
 
                 //number of ms between points used for the ramp
-                const int timeInterval = 250;
+                const int timeInterval = 140;//Runs at 7hz (7 operation over a period of 1 second)
 
                 
 
                 int numberOfIntervals = (int)Math.Round((ftime / timeInterval), 0);
                 Console.WriteLine("Number of intervals {0}", numberOfIntervals);
 
-                int intervalDeltaVoltage = ((int)Math.Round(fvlim) - (int)Math.Round(fvfloor)) / numberOfIntervals;
+                float intervalDeltaVoltage = (fvlim - fvfloor) / numberOfIntervals;
 
 
 
@@ -876,7 +876,7 @@ namespace HakarusKoradProgrammer
                     {
                         device.SendQueuePush("VSET1:", _TestSequenceElements[index].GetVoltage().ToString());
                         device.SendQueuePush("ISET1:", _TestSequenceElements[index].GetCurrent().ToString());
-                        Thread.Sleep(25);
+                        //Thread.Sleep(25);
                         Thread.Sleep(_TestSequenceElements[index].GetTime());
                     }
                 }
@@ -916,7 +916,7 @@ namespace HakarusKoradProgrammer
         #region Power monitoring
         private void PowerPoller()
         {
-            //Thread.Sleep(250);
+            Thread.Sleep(250);
             while(!_ThreadEnd)
             {
                 PowerUpdater();
@@ -931,8 +931,8 @@ namespace HakarusKoradProgrammer
                 {
                     if(device._deviceName == txtDeviceName.Text)
                     {
-                    txtActiveVoltage.Text = device._voltage;
-                    txtActiveCurrent.Text = device._current;
+                    txtActiveVoltage.Text = device._fvoltage.ToString();
+                    txtActiveCurrent.Text = device._fcurrent.ToString();
                     if(device._current == null | device._voltage == null)
                         {
 
@@ -940,8 +940,8 @@ namespace HakarusKoradProgrammer
                         else
                         {
                             
-                            _voltage = float.Parse(device._voltage);
-                            _current = float.Parse(device._current);
+                            _voltage = device._fvoltage;
+                            _current = device._fcurrent;
 
                             _power = _voltage * _current;
                             _resistance = _voltage / _current;

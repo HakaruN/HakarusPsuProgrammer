@@ -1095,6 +1095,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
             this.txtFileName.TabIndex = 2;
+            this.txtFileName.Text = "TestSequence";
             // 
             // txtFilePath
             // 
@@ -1102,6 +1103,7 @@
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(246, 20);
             this.txtFilePath.TabIndex = 2;
+            this.txtFilePath.Text = "C:\\\\";
             // 
             // btnTest
             // 
@@ -1189,6 +1191,7 @@
             this.txtLogResultsName.Name = "txtLogResultsName";
             this.txtLogResultsName.Size = new System.Drawing.Size(246, 20);
             this.txtLogResultsName.TabIndex = 3;
+            this.txtLogResultsName.Text = "Log";
             // 
             // txtLogFilePath
             // 
@@ -1196,6 +1199,7 @@
             this.txtLogFilePath.Name = "txtLogFilePath";
             this.txtLogFilePath.Size = new System.Drawing.Size(246, 20);
             this.txtLogFilePath.TabIndex = 4;
+            this.txtLogFilePath.Text = "C:\\\\";
             // 
             // label11
             // 
