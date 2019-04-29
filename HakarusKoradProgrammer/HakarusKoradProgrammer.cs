@@ -213,7 +213,7 @@ namespace HakarusKoradProgrammer
                             device.SendQueuePush("VSET1:", "0");
                             device.SendQueuePush("ISET1:", "0");
                             device.SendQueuePush("BEEP", "1");
-                            Thread.Sleep(250);
+                            Thread.Sleep(100);
                         }
                     }
 
