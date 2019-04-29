@@ -7,13 +7,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Xml;
-
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 
 
 
@@ -23,12 +16,12 @@ namespace HakarusKoradProgrammer
     {
         List<SerialDevice> _DeviceList = new List<SerialDevice>();    //List to store the Devices
         List<TestSequenceElement> _TestSequenceElements = new List<TestSequenceElement>(); //List to store the test sequences
-        List<TestSequenceElement> _DataLoggingList = new List<TestSequenceElement>();
+        List<TestSequenceElement> _DataLoggingList = new List<TestSequenceElement>(); //List to store the samples logged during a test run
 
-        XmlSerializer _XmlSerial;
+        XmlSerializer _XmlSerial;//creates ana XmlSerializer object for use in the XML IO sections
 
 
-        private int[] _AcceptableBaudRates = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000, 256000 };
+        private int[] _AcceptableBaudRates = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200, 128000};
 
         private float _voltage = 0;
         private float _current = 0;
@@ -42,10 +35,11 @@ namespace HakarusKoradProgrammer
         private string FilePath = "";
         private string FileName = "";
 
+        //Sets teh column width of the dataLoging and componentTest list boxes
         private string lvlvComponentTesterBox = "{0,0}{1,35}{2,70}";
         private string LoggingLayout = "{0,0}{1,25}{2,25}{3,35}{4,35}";
 
-
+        Thread PowerMeasurement;
 
 
         #region initialization
@@ -89,24 +83,23 @@ namespace HakarusKoradProgrammer
             lbxTestSequence.Items.Add(string.Format(lvlvComponentTesterBox, "Voltage", "Current", "Time"));
             ComPortInit();
         }
-        private void PollingThreadGen()
+        private void PollingThreadGen()//Generates the thread for polling the power related values from the current selected device
         {
             Thread.Sleep(400);
             //This spawns a thread that will poll the currently selected device and set the actual volt/current output txtbox
-            Thread PowerMeasurement = new Thread(PowerPoller);
+            PowerMeasurement = new Thread(PowerPoller);//The new thread (PowerMeasurement) will run the PowerPoller method
             Console.WriteLine("Thread created");
 
 
 
-            PowerMeasurement.IsBackground = true;
+            PowerMeasurement.IsBackground = true;//Sets the thread to a background thread that can run off and do its own thing independantly
 
 
-            PowerMeasurement.Start();
+            PowerMeasurement.Start();//actually starts the threads execution
 
             Console.WriteLine("Threads started");
         }
         #endregion
-
 
 
         #region Connection Settings
@@ -179,10 +172,12 @@ namespace HakarusKoradProgrammer
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            CreateDevice();
             Connect();
         }
         private void Connect()
         {
+            _ThreadEnd = false;
             if (IsDeviceSelected())
             {
                 Console.WriteLine("Connecting device...");
@@ -198,7 +193,6 @@ namespace HakarusKoradProgrammer
                         else
                         {
 
-                            _ThreadEnd = false;
                             Console.WriteLine("Connecting {0} to port {1}", cbbDevice.Text, cbbComPort.Text);
                             txtConnected.Text = device.Connect().ToString();
                             //If statement safeguards the code so if there is a failed connection (even if the device was detected) the program wont 
@@ -219,6 +213,7 @@ namespace HakarusKoradProgrammer
                             device.SendQueuePush("VSET1:", "0");
                             device.SendQueuePush("ISET1:", "0");
                             device.SendQueuePush("BEEP", "1");
+                            Thread.Sleep(250);
                         }
                     }
 
@@ -233,6 +228,7 @@ namespace HakarusKoradProgrammer
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
             Disconnect();
+            RemoveDevice();
         }
         private void Disconnect()
         {
@@ -245,11 +241,20 @@ namespace HakarusKoradProgrammer
                         if (device._isConnected)
                         {
                             _ThreadEnd = true;
-                            Thread.Sleep(100);
+                            //Thread.Sleep(100);
                             Console.WriteLine("Closing connection to {0}.", device._comPort);
 
                             device.Disconnect();
                             txtConnected.Text = device.Disconnect().ToString();
+                            PowerMeasurement.Abort();
+                            if (PowerMeasurement.IsAlive)
+                            {
+                                Console.WriteLine("Thread not terminated");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Thread terminated");
+                            }
                         }
                         else
                         {
@@ -262,6 +267,8 @@ namespace HakarusKoradProgrammer
             {
                 DeviceNotSelected();
             }
+            
+            Console.WriteLine("Device fully disconnected");
         }
 
         private void DeviceListValidation()
@@ -914,11 +921,15 @@ namespace HakarusKoradProgrammer
         #region Power monitoring
         private void PowerPoller()
         {
-            Thread.Sleep(250);
+            Thread.Sleep(300);
             while(!_ThreadEnd)
             {
                 PowerUpdater();
-                Thread.Sleep(25);
+                Thread.Sleep(50);
+            }
+            if(_ThreadEnd)
+            {
+                Console.WriteLine("Thread going of of scope");
             }
         }
         private void PowerUpdater()

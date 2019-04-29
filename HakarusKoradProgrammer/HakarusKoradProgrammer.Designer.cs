@@ -38,10 +38,6 @@
             this.txtConnected = new System.Windows.Forms.TextBox();
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
-            this.txtBeepState = new System.Windows.Forms.TextBox();
-            this.gpbDevicePairs = new System.Windows.Forms.GroupBox();
-            this.btnCreateDevice = new System.Windows.Forms.Button();
-            this.btnRemoveDevice = new System.Windows.Forms.Button();
             this.btnBeepState = new System.Windows.Forms.Button();
             this.gpbConnectionSetup = new System.Windows.Forms.GroupBox();
             this.btnComPortRefresh = new System.Windows.Forms.Button();
@@ -170,7 +166,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbConnectionButtons.SuspendLayout();
-            this.gpbDevicePairs.SuspendLayout();
             this.gpbConnectionSetup.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -221,8 +216,6 @@
             this.tabPage1.Controls.Add(this.txtBeep);
             this.tabPage1.Controls.Add(this.lblBeepState);
             this.tabPage1.Controls.Add(this.gpbConnectionButtons);
-            this.tabPage1.Controls.Add(this.txtBeepState);
-            this.tabPage1.Controls.Add(this.gpbDevicePairs);
             this.tabPage1.Controls.Add(this.btnBeepState);
             this.tabPage1.Controls.Add(this.gpbConnectionSetup);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -257,16 +250,16 @@
             this.gpbConnectionButtons.Controls.Add(this.txtConnected);
             this.gpbConnectionButtons.Controls.Add(this.btnDisconnect);
             this.gpbConnectionButtons.Controls.Add(this.btnConnect);
-            this.gpbConnectionButtons.Location = new System.Drawing.Point(513, 46);
+            this.gpbConnectionButtons.Location = new System.Drawing.Point(339, 46);
             this.gpbConnectionButtons.Name = "gpbConnectionButtons";
-            this.gpbConnectionButtons.Size = new System.Drawing.Size(249, 326);
+            this.gpbConnectionButtons.Size = new System.Drawing.Size(338, 326);
             this.gpbConnectionButtons.TabIndex = 29;
             this.gpbConnectionButtons.TabStop = false;
             // 
             // lblConnection
             // 
             this.lblConnection.AutoSize = true;
-            this.lblConnection.Location = new System.Drawing.Point(44, 164);
+            this.lblConnection.Location = new System.Drawing.Point(105, 164);
             this.lblConnection.Name = "lblConnection";
             this.lblConnection.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblConnection.Size = new System.Drawing.Size(62, 13);
@@ -275,7 +268,7 @@
             // 
             // txtConnected
             // 
-            this.txtConnected.Location = new System.Drawing.Point(112, 161);
+            this.txtConnected.Location = new System.Drawing.Point(173, 161);
             this.txtConnected.Name = "txtConnected";
             this.txtConnected.ReadOnly = true;
             this.txtConnected.Size = new System.Drawing.Size(75, 20);
@@ -284,7 +277,7 @@
             // 
             // btnDisconnect
             // 
-            this.btnDisconnect.Location = new System.Drawing.Point(23, 203);
+            this.btnDisconnect.Location = new System.Drawing.Point(84, 203);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(180, 59);
             this.btnDisconnect.TabIndex = 23;
@@ -294,53 +287,13 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(23, 75);
+            this.btnConnect.Location = new System.Drawing.Point(84, 75);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(180, 59);
             this.btnConnect.TabIndex = 22;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // txtBeepState
-            // 
-            this.txtBeepState.Location = new System.Drawing.Point(647, 241);
-            this.txtBeepState.Name = "txtBeepState";
-            this.txtBeepState.ReadOnly = true;
-            this.txtBeepState.Size = new System.Drawing.Size(100, 20);
-            this.txtBeepState.TabIndex = 30;
-            this.txtBeepState.Text = "On";
-            // 
-            // gpbDevicePairs
-            // 
-            this.gpbDevicePairs.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.gpbDevicePairs.Controls.Add(this.btnCreateDevice);
-            this.gpbDevicePairs.Controls.Add(this.btnRemoveDevice);
-            this.gpbDevicePairs.Location = new System.Drawing.Point(267, 41);
-            this.gpbDevicePairs.Name = "gpbDevicePairs";
-            this.gpbDevicePairs.Size = new System.Drawing.Size(226, 331);
-            this.gpbDevicePairs.TabIndex = 28;
-            this.gpbDevicePairs.TabStop = false;
-            // 
-            // btnCreateDevice
-            // 
-            this.btnCreateDevice.Location = new System.Drawing.Point(17, 80);
-            this.btnCreateDevice.Name = "btnCreateDevice";
-            this.btnCreateDevice.Size = new System.Drawing.Size(180, 59);
-            this.btnCreateDevice.TabIndex = 22;
-            this.btnCreateDevice.Text = "Create device pair";
-            this.btnCreateDevice.UseVisualStyleBackColor = true;
-            this.btnCreateDevice.Click += new System.EventHandler(this.btnCreateDevice_Click);
-            // 
-            // btnRemoveDevice
-            // 
-            this.btnRemoveDevice.Location = new System.Drawing.Point(17, 208);
-            this.btnRemoveDevice.Name = "btnRemoveDevice";
-            this.btnRemoveDevice.Size = new System.Drawing.Size(180, 59);
-            this.btnRemoveDevice.TabIndex = 22;
-            this.btnRemoveDevice.Text = "Remove device pair";
-            this.btnRemoveDevice.UseVisualStyleBackColor = true;
-            this.btnRemoveDevice.Click += new System.EventHandler(this.btnRemoveDevice_Click);
             // 
             // btnBeepState
             // 
@@ -432,7 +385,7 @@
             this.txtDataBits.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtDataBits.Size = new System.Drawing.Size(100, 20);
             this.txtDataBits.TabIndex = 16;
-            this.txtDataBits.Text = "6";
+            this.txtDataBits.Text = "8";
             // 
             // txtDeviceName
             // 
@@ -450,7 +403,7 @@
             this.txtBaudRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBaudRate.Size = new System.Drawing.Size(100, 20);
             this.txtBaudRate.TabIndex = 17;
-            this.txtBaudRate.Text = "14400";
+            this.txtBaudRate.Text = "9600";
             // 
             // lblFlowControl
             // 
@@ -1619,7 +1572,6 @@
             this.tabPage1.PerformLayout();
             this.gpbConnectionButtons.ResumeLayout(false);
             this.gpbConnectionButtons.PerformLayout();
-            this.gpbDevicePairs.ResumeLayout(false);
             this.gpbConnectionSetup.ResumeLayout(false);
             this.gpbConnectionSetup.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1727,8 +1679,6 @@
         private System.Windows.Forms.ComboBox cbbDevice;
         private System.Windows.Forms.TextBox txtDeviceName;
         private System.Windows.Forms.Label lblDeviceName;
-        private System.Windows.Forms.Button btnCreateDevice;
-        private System.Windows.Forms.Button btnRemoveDevice;
         private System.Windows.Forms.Label lblPowerState;
         private System.Windows.Forms.TextBox txtPowerState;
         private System.Windows.Forms.Button btnPower;
@@ -1748,7 +1698,6 @@
         private System.Windows.Forms.GroupBox gpbPowerSwitch;
         private System.Windows.Forms.GroupBox gpbPowerOut;
         private System.Windows.Forms.GroupBox gpbConnectionSetup;
-        private System.Windows.Forms.GroupBox gpbDevicePairs;
         private System.Windows.Forms.GroupBox gpbConnectionButtons;
         private System.Windows.Forms.TextBox txtResistance;
         private System.Windows.Forms.TextBox txtActivePower;
@@ -1778,7 +1727,6 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button btnSaveLog;
         private System.Windows.Forms.Label lblBeepState;
-        private System.Windows.Forms.TextBox txtBeepState;
         private System.Windows.Forms.Button btnBeepState;
         private System.Windows.Forms.TextBox txtBeep;
         private System.Windows.Forms.TextBox txtFilePath;

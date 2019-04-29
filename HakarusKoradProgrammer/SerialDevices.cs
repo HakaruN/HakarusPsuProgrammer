@@ -36,6 +36,8 @@ namespace HakarusKoradProgrammer
         //private ushort _returnByte;
 
         public  int _returnDelay = 50;
+        Thread PowerPolling;
+        Thread DispatchQueueOperator;
 
         struct SerialMsg
         {
@@ -58,7 +60,7 @@ namespace HakarusKoradProgrammer
         }
 
         //Thread control flags for the devices serial data dispatch queueing thread
-        private bool _ThreadEnd = true;
+        private bool _ThreadEnd = false;
         private bool _dispatchQueuePause = false;
 
         SerialPort _port;
@@ -86,12 +88,12 @@ namespace HakarusKoradProgrammer
             _ThreadEnd = false;
             _dispatchQueuePause = false;
 
-            Thread DispatchQueueOperator = new Thread(DispatchQueueOperation);
+            DispatchQueueOperator = new Thread(DispatchQueueOperation);
             Console.WriteLine("Dispatch operator thread created");
             DispatchQueueOperator.IsBackground = true;
             DispatchQueueOperator.Start();
 
-            Thread PowerPolling = new Thread(PowerPoller);
+            PowerPolling = new Thread(PowerPoller);
             Console.WriteLine("polling thread created");
             PowerPolling.IsBackground = true;
             PowerPolling.Start();
@@ -104,6 +106,15 @@ namespace HakarusKoradProgrammer
         ~SerialDevice()
         {
             _ThreadEnd = true;
+            PowerPolling.Abort();
+            if(PowerPolling.IsAlive)
+            {
+                Console.WriteLine("Power polling thread not terminated");
+            }
+            else
+            {
+                Console.WriteLine("Power Polling thread terminated");
+            }
         }
 
         public bool Connect()
@@ -220,6 +231,8 @@ namespace HakarusKoradProgrammer
         {
             _port.Close();
             _isConnected = false;
+            _ThreadEnd = true;
+            PowerPolling.Abort();
             Console.WriteLine("Port closed.");
             Console.WriteLine();
             return false;
@@ -425,6 +438,7 @@ namespace HakarusKoradProgrammer
                 if (_dispatchQueue.Count != 0)
                 {
                     //Dequeue
+                    Thread.Sleep(20);
                     msg = _dispatchQueue.Dequeue();
                     SendData(msg);
                 }
@@ -436,9 +450,9 @@ namespace HakarusKoradProgrammer
             if (_isConnected)
             {
                 SendQueuePush("VOUT1?","");
-                Thread.Sleep(30);
+                Thread.Sleep(40);
                 SendQueuePush("IOUT1?","");
-                Thread.Sleep(170);
+                Thread.Sleep(180);
                 //The sleeps in here assure that the device has a 4hz Volt and current update.
                 //The 30ms sleep between is to prevent two calls from being writen together.
                 //Note this shouldn't happen anyway but you cant be too sure.
