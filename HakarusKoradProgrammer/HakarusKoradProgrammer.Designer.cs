@@ -1507,7 +1507,7 @@
             this.txtResistance.Location = new System.Drawing.Point(335, 66);
             this.txtResistance.Name = "txtResistance";
             this.txtResistance.ReadOnly = true;
-            this.txtResistance.Size = new System.Drawing.Size(66, 20);
+            this.txtResistance.Size = new System.Drawing.Size(89, 20);
             this.txtResistance.TabIndex = 7;
             this.txtResistance.Text = "0.0";
             // 
@@ -1516,7 +1516,7 @@
             this.txtActivePower.Location = new System.Drawing.Point(335, 37);
             this.txtActivePower.Name = "txtActivePower";
             this.txtActivePower.ReadOnly = true;
-            this.txtActivePower.Size = new System.Drawing.Size(66, 20);
+            this.txtActivePower.Size = new System.Drawing.Size(89, 20);
             this.txtActivePower.TabIndex = 10;
             this.txtActivePower.Text = "0.0";
             // 

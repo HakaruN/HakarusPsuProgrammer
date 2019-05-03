@@ -47,6 +47,7 @@ namespace HakarusKoradProgrammer
         {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -128,6 +129,7 @@ namespace HakarusKoradProgrammer
 
         private void btnRemoveDevice_Click(object sender, EventArgs e)
         {
+
             RemoveDevice();
         }
         private void RemoveDevice()
@@ -139,7 +141,6 @@ namespace HakarusKoradProgrammer
                 {
                     if (!device._isConnected)
                     {
-
                         device.Disconnect();
                         _ThreadEnd = true;
                         Console.WriteLine("Removing device {0}", device._deviceName);
@@ -148,8 +149,6 @@ namespace HakarusKoradProgrammer
                         _DeviceList.RemoveAt(index);
                         txtDeviceID.Text = "";
                         txtConnected.Text = "False";
-
-
                         return;
                     }
                     else
@@ -227,6 +226,8 @@ namespace HakarusKoradProgrammer
 
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
+            disablePower();
+            Thread.Sleep(100);
             Disconnect();
             RemoveDevice();
         }
@@ -384,7 +385,8 @@ namespace HakarusKoradProgrammer
                             {
 
                                 device.SendQueuePush("VSET1:", txtVoltage.Text);
-                                txtSetVoltage.Text = txtVoltage.Text;
+                                txtSetVoltage.Clear();
+                                txtSetVoltage.Text = String.Format("{0:00.00}", txtVoltage.Text);
                             }
                         }
                     }
@@ -422,7 +424,8 @@ namespace HakarusKoradProgrammer
                             if (device._deviceName == cbbDevice.Text)
                             {
                                 device.SendQueuePush("ISET1:", txtCurrent.Text);
-                                txtSetCurrent.Text = txtCurrent.Text;
+                                txtSetCurrent.Clear();
+                                txtSetCurrent.Text = String.Format("{0:0.000}", txtCurrent.Text);
                             }
                         }
                     }
@@ -464,10 +467,12 @@ namespace HakarusKoradProgrammer
                             if (device._deviceName == cbbDevice.Text)
                             {
                                 device.SendQueuePush("ISET1:", txtCurrent.Text);
-                                txtSetCurrent.Text = txtCurrent.Text;
+                                txtSetCurrent.Clear();
+                                txtSetCurrent.Text = String.Format("{0:0.000}", txtCurrent.Text);
                                 Thread.Sleep(10);
                                 device.SendQueuePush("VSET1:", txtVoltage.Text);
-                                txtSetVoltage.Text = txtVoltage.Text;
+                                txtSetVoltage.Clear();
+                                txtSetVoltage.Text = String.Format("{0:00.00}", txtVoltage.Text);
                             }
                         }
                     }
@@ -508,6 +513,31 @@ namespace HakarusKoradProgrammer
                 }
             }
             //_PollThreadhold = false;
+        }
+
+        private void disablePower()
+        {
+            foreach (SerialDevice device in _DeviceList)
+            {
+                if (device._deviceName == cbbDevice.Text)
+                {
+                    if (device._isConnected)
+                    {
+                        if (device._isOn)
+                        {
+                            txtPowerState.Text = "Powered Off";
+                            device.PowerSwitch();
+                        }
+
+                    }
+                    else
+                    {
+                        DeviceNotConnected();
+                    }
+
+                }
+            }
+
         }
         #endregion
 
@@ -562,11 +592,17 @@ namespace HakarusKoradProgrammer
         #region Form closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            disablePower();
+            Thread.Sleep(50);
             _ThreadEnd = true;
+            
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            disablePower();
+            Thread.Sleep(50);
             _ThreadEnd = true;
+            
         }
 
         #endregion
@@ -1060,6 +1096,7 @@ namespace HakarusKoradProgrammer
 
         private void SaveTestSequence()
         {
+            Console.WriteLine("Saving test sqeuence");
             FilePath = "";
             FileName = "";
 
@@ -1082,18 +1119,28 @@ namespace HakarusKoradProgrammer
             {
                 FileName = txtFileName.Text;
             }
-            List<TestSequenceElement> TestSequenceElements = _TestSequenceElements;
+
+            try
+            {
+                List<TestSequenceElement> TestSequenceElements = _TestSequenceElements;
+
+
+                _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
+
+                FileStream XmlStream = new FileStream(FilePath + @"\" + FileName + ".Xml", FileMode.Create, FileAccess.Write);
+
+                _XmlSerial.Serialize(XmlStream, TestSequenceElements);
+
+                FilePath = "";
+                FileName = "";
+                XmlStream.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error writing file, check filepaths are ok");
+            }
+
             
-
-            _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
-
-            FileStream XmlStream = new FileStream(FilePath + @"\" +  FileName + ".Xml", FileMode.Create, FileAccess.Write);
-
-            _XmlSerial.Serialize(XmlStream, TestSequenceElements);
-
-            FilePath = "";
-            FileName = "";
-            XmlStream.Close();
         }
 
         private void SaveTestResults()
@@ -1119,7 +1166,29 @@ namespace HakarusKoradProgrammer
             {
                 FileName = txtLogResultsName.Text;
             }
-            List<TestSequenceElement> DataLoggingList = _DataLoggingList;
+
+            try
+            {
+                List<TestSequenceElement> DataLoggingList = _DataLoggingList;
+
+                //FileStream stream = new FileStream(FilePath + @"\" + FileName + ".csv", FileMode.Create, FileAccess.Write);
+                StreamWriter stream = new StreamWriter(FilePath + @"\" + FileName + ".csv");
+                string msg = "Sample, Voltage, Current, Power, Resistance";
+                stream.WriteLine(msg);
+
+                for (int i = 0; i <= DataLoggingList.Count() - 1; i++)
+                {
+                    stream.Write(i + ',' + DataLoggingList[i].GetVoltage().ToString() + ',' + DataLoggingList[i].GetCurrent().ToString() + ',' + DataLoggingList[i].GetPower().ToString() + ',' + DataLoggingList[i].GetResistance().ToString() + "\n\r");
+                }
+                stream.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Try checking the filepath and file name", "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
+            /*
 
             _XmlSerial = new XmlSerializer(typeof(List<TestSequenceElement>));
 
@@ -1129,6 +1198,7 @@ namespace HakarusKoradProgrammer
             FilePath = "";
             FileName = "";
             XmlStream.Close();
+            */
         }
 
         private void LoadTestSequence()
